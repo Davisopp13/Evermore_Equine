@@ -7,17 +7,25 @@ import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 
 export async function getContent(key: string): Promise<string> {
-  const result = await db
-    .select()
-    .from(siteContent)
-    .where(eq(siteContent.key, key))
-    .limit(1);
-  return result[0]?.value ?? "";
+  try {
+    const result = await db
+      .select()
+      .from(siteContent)
+      .where(eq(siteContent.key, key))
+      .limit(1);
+    return result[0]?.value ?? "";
+  } catch {
+    return "";
+  }
 }
 
 export async function getAllContent(): Promise<Record<string, string>> {
-  const results = await db.select().from(siteContent);
-  return Object.fromEntries(results.map((r) => [r.key, r.value]));
+  try {
+    const results = await db.select().from(siteContent);
+    return Object.fromEntries(results.map((r) => [r.key, r.value]));
+  } catch {
+    return {};
+  }
 }
 
 export async function updateContent(key: string, value: string): Promise<void> {
