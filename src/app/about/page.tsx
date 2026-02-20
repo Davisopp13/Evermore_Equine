@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { getAllContent } from "@/lib/actions/content";

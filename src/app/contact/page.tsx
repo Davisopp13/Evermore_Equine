@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { getAllContent } from "@/lib/actions/content";
 import { ContactForm } from "./ContactForm";
