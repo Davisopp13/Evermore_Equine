@@ -1,0 +1,205 @@
+/* Updated: 1769608166734 */
+/* Updated: 2025-12-25T20:23:20.364Z */
+/* Updated: 2025-12-24T15:43:58.065Z */
+/* Updated: 2025-12-24T15:04:59.215Z */
+/* Updated: 2025-12-24T14:54:05.250Z */
+/* Updated: 2025-12-24T14:36:20.231Z */
+/* Updated: 2025-12-24T14:34:35.152Z */
+/* Updated: 2025-12-12T21:23:52.526Z */
+/* Updated: 2025-12-12T21:19:02.101Z */
+/* Updated: 2025-12-12T21:11:04.651Z */
+/* Updated: 2025-12-12T20:59:52.223Z */
+/* Updated: 2025-12-12T19:00:17.262Z */
+/* Updated: 2025-12-12T18:59:02.348Z */
+/* Updated: 2025-12-12T18:57:34.349Z */
+/* Updated: 2025-12-12T18:56:59.570Z */
+/* Updated: 2025-12-12T18:56:48.794Z */
+/* Updated: 2025-12-12T18:53:05.261Z */
+/* Updated: 2025-12-12T18:28:48.177Z */
+/* Updated: 2025-12-12T18:26:39.552Z */
+/* Updated: 2025-12-12T18:26:25.146Z */
+/* Updated: 2025-12-12T18:25:24.046Z */
+/* Updated: 2025-12-12T18:21:18.936Z */
+/* Updated: 2025-12-12T18:02:55.383Z */
+/* Updated: 2025-12-10T01:05:59.884Z */
+/* Updated: 2025-12-05T19:24:04.730Z */
+/* Updated: 2025-12-05T16:48:56.025Z */
+/* Updated: 2025-12-05T16:23:56.933Z */
+/* Updated: 2025-12-05T16:23:41.016Z */
+/* Updated: 2025-12-05T16:04:34.212Z */
+/* Updated: 2025-12-05T16:03:44.674Z */
+/* Updated: 2025-12-05T15:37:12.252Z */
+/* Updated: 2025-12-05T15:16:00.493Z */
+/* Updated: 2025-12-05T15:15:58.453Z */
+/* Updated: 2025-12-05T15:15:35.293Z */
+/* Updated: 2025-12-05T15:15:27.139Z */
+/* Updated: 2025-12-05T15:12:36.033Z */
+/* Updated: 2025-12-05T15:09:26.079Z */
+/* Updated: 2025-12-05T15:02:11.260Z */
+/* Updated: 2025-11-27T21:00:25.739Z */
+/* Updated: 2025-11-27T04:16:36.961Z */
+/* Updated: 2025-11-26T14:51:24.716Z */
+/* Updated: 2025-11-26T14:18:30.295Z */
+/* Updated: 2025-11-26T14:17:21.812Z */
+/* Updated: 2025-11-26T14:15:23.563Z */
+/* Updated: 2025-11-26T14:14:56.547Z */
+/* Updated: 2025-11-26T14:12:43.421Z */
+/* Updated: 2025-11-26T13:50:13.721Z */
+/* Updated: 2025-11-26T02:48:36.306Z */
+/* Updated: 2025-11-25T19:46:54.313Z */
+/* Updated: 2025-11-24T03:07:46.414Z */
+/* Updated: 2025-11-23T23:10:28.930Z */
+/* Updated: 2025-11-23T02:46:49.604Z */
+/* Updated: 2025-11-22T19:28:49.754Z */
+/* Updated: 2025-11-22T19:19:03.815Z */
+/* Updated: 2025-11-22T16:21:11.962Z */
+/* Updated: 2025-11-22T15:57:40.264Z */
+/* Updated: 2025-11-22T15:56:41.923Z */
+/* Updated: 2025-11-22T15:56:32.164Z */
+/* Updated: 2025-11-22T15:44:28.444Z */
+/* Updated: 2025-11-22T15:42:25.074Z */
+/* Updated: 2025-11-22T15:38:49.358Z */
+/* Updated: 2025-11-22T15:31:26.725Z */
+/* Updated: 2025-11-22T15:05:53.181Z */
+/* Updated: 2025-11-22T02:45:36.437Z */
+/* Updated: 2025-11-21T04:28:09.082Z */
+/* Updated: 2025-11-21T04:13:07.124Z */
+/* Updated: 2025-11-21T03:52:12.048Z */
+/* Updated: 2025-11-21T03:10:45.554Z */
+/* Updated: 2025-11-21T02:51:08.617Z */
+/* Updated: 2025-11-21T02:22:03.706Z */
+/* Updated: 2025-11-21T01:13:08.959Z */
+/* Updated: 2025-11-21T00:39:01.479Z */
+/* Updated: 2025-11-21T00:37:27.343Z */
+/* Updated: 2025-11-20T23:20:01.846Z */
+/* Updated: 2025-11-20T21:24:29.041Z */
+/* Updated: 2025-11-20T21:17:35.383Z */
+/* Updated: 2025-11-20T20:57:48.869Z */
+/* Updated: 2025-11-20T20:50:39.219Z */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.98 0.01 85); /* Warm cream/white */
+  --foreground: oklch(0.2 0.02 100); /* Deep brownish/grey for text */
+  --card: oklch(0.99 0.005 85);
+  --card-foreground: oklch(0.2 0.02 100);
+  --popover: oklch(0.99 0.005 85);
+  --popover-foreground: oklch(0.2 0.02 100);
+  --primary: oklch(0.28 0.06 162); /* Darker Forest Green */
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.94 0.03 95); /* Warm beige */
+  --secondary-foreground: oklch(0.22 0.05 162);
+  --muted: oklch(0.94 0.03 95);
+  --muted-foreground: oklch(0.45 0.03 90);
+  --accent: oklch(0.90 0.04 95);
+  --accent-foreground: oklch(0.22 0.05 162);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.90 0.02 95);
+  --input: oklch(0.90 0.02 95);
+  --ring: oklch(0.28 0.06 162);
+  --chart-1: oklch(0.28 0.06 162);
+  --chart-2: oklch(0.38 0.08 162);
+  --chart-3: oklch(0.48 0.10 162);
+  --chart-4: oklch(0.85 0.15 90);
+  --chart-5: oklch(0.75 0.15 90);
+  --sidebar: oklch(0.98 0.01 85);
+  --sidebar-foreground: oklch(0.2 0.02 100);
+  --sidebar-primary: oklch(0.28 0.06 162);
+  --sidebar-primary-foreground: oklch(0.98 0.01 85);
+  --sidebar-accent: oklch(0.94 0.03 95);
+  --sidebar-accent-foreground: oklch(0.28 0.06 162);
+  --sidebar-border: oklch(0.90 0.02 95);
+  --sidebar-ring: oklch(0.28 0.06 162);
+}
+
+.dark {
+  --background: oklch(0.15 0.02 140); /* Dark forest green/black */
+  --foreground: oklch(0.95 0.02 95);
+  --card: oklch(0.18 0.03 140);
+  --card-foreground: oklch(0.95 0.02 95);
+  --popover: oklch(0.18 0.03 140);
+  --popover-foreground: oklch(0.95 0.02 95);
+  --primary: oklch(0.5 0.1 140); /* Lighter green for dark mode */
+  --primary-foreground: oklch(0.15 0.02 140);
+  --secondary: oklch(0.25 0.04 140);
+  --secondary-foreground: oklch(0.95 0.02 95);
+  --muted: oklch(0.25 0.04 140);
+  --muted-foreground: oklch(0.7 0.05 140);
+  --accent: oklch(0.25 0.04 140);
+  --accent-foreground: oklch(0.95 0.02 95);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.3 0.04 140);
+  --input: oklch(0.3 0.04 140);
+  --ring: oklch(0.5 0.1 140);
+  --chart-1: oklch(0.5 0.1 140);
+  --chart-2: oklch(0.6 0.12 140);
+  --chart-3: oklch(0.7 0.14 140);
+  --chart-4: oklch(0.4 0.08 140);
+  --chart-5: oklch(0.3 0.06 140);
+  --sidebar: oklch(0.18 0.03 140);
+  --sidebar-foreground: oklch(0.95 0.02 95);
+  --sidebar-primary: oklch(0.5 0.1 140);
+  --sidebar-primary-foreground: oklch(0.15 0.02 140);
+  --sidebar-accent: oklch(0.25 0.04 140);
+  --sidebar-accent-foreground: oklch(0.95 0.02 95);
+  --sidebar-border: oklch(0.3 0.04 140);
+  --sidebar-ring: oklch(0.5 0.1 140);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
