@@ -18,4 +18,9 @@ export const auth = betterAuth({
   },
   secret: process.env.BETTER_AUTH_SECRET!,
   baseURL: process.env.BETTER_AUTH_URL!,
+  trustedOrigins: [
+    "https://evermoreequine.com",
+    "https://www.evermoreequine.com",
+    "http://localhost:3000",
+  ],
 });
