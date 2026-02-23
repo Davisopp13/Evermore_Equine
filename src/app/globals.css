@@ -123,15 +123,19 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.98 0.01 85); /* Warm cream/white */
-  --foreground: oklch(0.2 0.02 100); /* Deep brownish/grey for text */
+  --background: oklch(0.98 0.01 85);
+  /* Warm cream/white */
+  --foreground: oklch(0.2 0.02 100);
+  /* Deep brownish/grey for text */
   --card: oklch(0.99 0.005 85);
   --card-foreground: oklch(0.2 0.02 100);
   --popover: oklch(0.99 0.005 85);
   --popover-foreground: oklch(0.2 0.02 100);
-  --primary: oklch(0.28 0.06 162); /* Darker Forest Green */
+  --primary: oklch(0.28 0.06 162);
+  /* Darker Forest Green */
   --primary-foreground: oklch(0.98 0.01 85);
-  --secondary: oklch(0.94 0.03 95); /* Warm beige */
+  --secondary: oklch(0.94 0.03 95);
+  /* Warm beige */
   --secondary-foreground: oklch(0.22 0.05 162);
   --muted: oklch(0.94 0.03 95);
   --muted-foreground: oklch(0.45 0.03 90);
@@ -157,13 +161,15 @@
 }
 
 .dark {
-  --background: oklch(0.15 0.02 140); /* Dark forest green/black */
+  --background: oklch(0.15 0.02 140);
+  /* Dark forest green/black */
   --foreground: oklch(0.95 0.02 95);
   --card: oklch(0.18 0.03 140);
   --card-foreground: oklch(0.95 0.02 95);
   --popover: oklch(0.18 0.03 140);
   --popover-foreground: oklch(0.95 0.02 95);
-  --primary: oklch(0.5 0.1 140); /* Lighter green for dark mode */
+  --primary: oklch(0.5 0.1 140);
+  /* Lighter green for dark mode */
   --primary-foreground: oklch(0.15 0.02 140);
   --secondary: oklch(0.25 0.04 140);
   --secondary-foreground: oklch(0.95 0.02 95);
@@ -194,6 +200,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

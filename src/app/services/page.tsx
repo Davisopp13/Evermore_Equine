@@ -36,6 +36,20 @@ export default async function ServicesPage() {
     packages = [];
   }
 
+  let lessonInfo: string[] = [];
+  try {
+    lessonInfo = JSON.parse(c["services.lessonInfo"] ?? "[]");
+  } catch {
+    lessonInfo = [];
+  }
+
+  let paymentMethods: string[] = [];
+  try {
+    paymentMethods = JSON.parse(c["services.paymentMethods"] ?? "[]");
+  } catch {
+    paymentMethods = [];
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Banner Section */}
@@ -296,14 +310,7 @@ export default async function ServicesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {[
-                    "Each lesson is private unless group lesson is requested",
-                    "All lesson packages are due on the day of first lesson",
-                    "All riders are required to wear long pants, boots, and an ASTM certified helmet while mounted",
-                    "Evermore Equine provides Certified Helmets for all riders",
-                    "We welcome all friends, family, and pets, please keep all pets leashed for their safety",
-                    "All visitors are required to wear closed toe shoes for their safety",
-                  ].map((item, i) => (
+                  {lessonInfo.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-muted-foreground leading-relaxed">
@@ -326,12 +333,7 @@ export default async function ServicesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  {[
-                    "Venmo (@evermore.equine)",
-                    "Cash",
-                    "Check (made out to Evermore Equine)",
-                    "Lessons may be rescheduled or gifted, but cannot be refunded",
-                  ].map((item, i) => (
+                  {paymentMethods.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-muted-foreground leading-relaxed">

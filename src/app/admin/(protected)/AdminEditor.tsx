@@ -17,7 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { LogOut, Save } from "lucide-react";
+import { LogOut, Save, Plus, Trash2 } from "lucide-react";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface Package {
@@ -206,6 +206,59 @@ function PackagesEditor({
   );
 }
 
+// ── Checklist editor ───────────────────────────────────────────────────────
+function ChecklistEditor({
+  items,
+  onChange,
+}: {
+  items: string[];
+  onChange: (updated: string[]) => void;
+}) {
+  function updateItem(idx: number, val: string) {
+    const next = items.map((item, i) => (i === idx ? val : item));
+    onChange(next);
+  }
+
+  function removeItem(idx: number) {
+    onChange(items.filter((_, i) => i !== idx));
+  }
+
+  function addItem() {
+    onChange([...items, ""]);
+  }
+
+  return (
+    <div className="space-y-2">
+      {items.map((item, idx) => (
+        <div key={idx} className="flex gap-2 items-center">
+          <Input
+            value={item}
+            onChange={(e) => updateItem(idx, e.target.value)}
+            className="text-sm"
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => removeItem(idx)}
+            className="shrink-0 text-muted-foreground hover:text-destructive"
+          >
+            <Trash2 className="w-4 h-4" />
+          </Button>
+        </div>
+      ))}
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={addItem}
+        className="gap-2 mt-2"
+      >
+        <Plus className="w-4 h-4" />
+        Add item
+      </Button>
+    </div>
+  );
+}
+
 // ── Main editor ────────────────────────────────────────────────────────────
 export function AdminEditor({
   initialContent,
@@ -217,6 +270,20 @@ export function AdminEditor({
   const [packages, setPackages] = useState<Package[]>(() => {
     try {
       return JSON.parse(initialContent["services.packages"] ?? "[]");
+    } catch {
+      return [];
+    }
+  });
+  const [lessonInfo, setLessonInfo] = useState<string[]>(() => {
+    try {
+      return JSON.parse(initialContent["services.lessonInfo"] ?? "[]");
+    } catch {
+      return [];
+    }
+  });
+  const [paymentMethods, setPaymentMethods] = useState<string[]>(() => {
+    try {
+      return JSON.parse(initialContent["services.paymentMethods"] ?? "[]");
     } catch {
       return [];
     }
@@ -245,6 +312,32 @@ export function AdminEditor({
           "services.packages": JSON.stringify(packages),
         });
         toast.success("Packages saved!");
+      } catch {
+        toast.error("Save failed — please try again.");
+      }
+    });
+  }
+
+  function saveLessonInfo() {
+    startTransition(async () => {
+      try {
+        await updateManyContent({
+          "services.lessonInfo": JSON.stringify(lessonInfo),
+        });
+        toast.success("Lesson information saved!");
+      } catch {
+        toast.error("Save failed — please try again.");
+      }
+    });
+  }
+
+  function savePaymentMethods() {
+    startTransition(async () => {
+      try {
+        await updateManyContent({
+          "services.paymentMethods": JSON.stringify(paymentMethods),
+        });
+        toast.success("Payment methods saved!");
       } catch {
         toast.error("Save failed — please try again.");
       }
@@ -778,6 +871,49 @@ export function AdminEditor({
                 </Button>
               </div>
             </div>
+
+            <Separator />
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Lesson Information</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ChecklistEditor items={lessonInfo} onChange={setLessonInfo} />
+                <div className="flex justify-end pt-2">
+                  <Button
+                    onClick={saveLessonInfo}
+                    disabled={isPending}
+                    className="gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    {isPending ? "Saving…" : "Save lesson information"}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Payment Methods</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <ChecklistEditor
+                  items={paymentMethods}
+                  onChange={setPaymentMethods}
+                />
+                <div className="flex justify-end pt-2">
+                  <Button
+                    onClick={savePaymentMethods}
+                    disabled={isPending}
+                    className="gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    {isPending ? "Saving…" : "Save payment methods"}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* ── CONTACT ──────────────────────────────────────────────── */}

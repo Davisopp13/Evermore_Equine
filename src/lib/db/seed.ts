@@ -302,6 +302,26 @@ const entries: Array<{ key: string; value: string }> = [
     key: "services.packages",
     value: JSON.stringify(packages),
   },
+  {
+    key: "services.lessonInfo",
+    value: JSON.stringify([
+      "Each lesson is private unless group lesson is requested",
+      "All lesson packages are due on the day of first lesson",
+      "All riders are required to wear long pants, boots, and an ASTM certified helmet while mounted",
+      "Evermore Equine provides Certified Helmets for all riders",
+      "We welcome all friends, family, and pets, please keep all pets leashed for their safety",
+      "All visitors are required to wear closed toe shoes for their safety",
+    ]),
+  },
+  {
+    key: "services.paymentMethods",
+    value: JSON.stringify([
+      "Venmo (@evermore.equine)",
+      "Cash",
+      "Check (made out to Evermore Equine)",
+      "Lessons may be rescheduled or gifted, but cannot be refunded",
+    ]),
+  },
 
   // ── Contact ─────────────────────────────────────────────────────────────
   { key: "contact.hours.summer.label", value: "April - November" },
