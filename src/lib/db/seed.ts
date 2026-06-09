@@ -120,11 +120,6 @@ const entries: Array<{ key: string; value: string }> = [
 
   { key: "home.basics.title", value: "From Basics to Beyond" },
   {
-    key: "home.basics.paragraph1",
-    value:
-      'Whether taking your very first lesson or advancing toward more refined riding goals, we guide students "from basics to beyond" with individualized attention and a supportive, encouraging community.',
-  },
-  {
     key: "home.basics.paragraph2",
     value:
       "Our mission is to cultivate knowledgeable, capable, and compassionate equestrians; in the saddle, on the ground, and outside the barn. We want riders to take the knowledge they learn from Evermore Equine and implement their skills into all aspects of life.",
@@ -298,10 +293,8 @@ const entries: Array<{ key: string; value: string }> = [
       "Whether you're a complete beginner or returning to riding after years away, we meet you where you are and support your individual goals at any experience level.",
   },
 
-  {
-    key: "services.packages",
-    value: JSON.stringify(packages),
-  },
+  { key: "services.pricing.thirtyMin", value: "$50" },
+  { key: "services.pricing.oneHour", value: "$70" },
   {
     key: "services.lessonInfo",
     value: JSON.stringify([

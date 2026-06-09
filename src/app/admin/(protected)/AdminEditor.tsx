@@ -19,14 +19,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { LogOut, Save, Plus, Trash2 } from "lucide-react";
 
-// ── Types ──────────────────────────────────────────────────────────────────
-interface Package {
-  name: string;
-  subtitle: string;
-  color: string;
-  options: Array<{ duration: string; price: string; savings: string | null }>;
-}
-
 // ── Field components ───────────────────────────────────────────────────────
 function Field({
   label,
@@ -94,118 +86,6 @@ function SaveBar({
   );
 }
 
-// ── Package editor ─────────────────────────────────────────────────────────
-function PackagesEditor({
-  packages,
-  onChange,
-}: {
-  packages: Package[];
-  onChange: (updated: Package[]) => void;
-}) {
-  function updatePkg(idx: number, field: keyof Package, val: string) {
-    const next = packages.map((p, i) =>
-      i === idx ? { ...p, [field]: val } : p
-    );
-    onChange(next);
-  }
-
-  function updateOption(
-    pkgIdx: number,
-    optIdx: number,
-    field: "price" | "savings",
-    val: string
-  ) {
-    const next = packages.map((p, i) => {
-      if (i !== pkgIdx) return p;
-      const opts = p.options.map((o, j) =>
-        j === optIdx
-          ? { ...o, [field]: field === "savings" && val === "" ? null : val }
-          : o
-      );
-      return { ...p, options: opts };
-    });
-    onChange(next);
-  }
-
-  return (
-    <div className="space-y-4">
-      {packages.map((pkg, pkgIdx) => (
-        <Card key={pkgIdx} className="border-border/50">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base" style={{ color: pkg.color }}>
-              {pkg.name}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-                  Package Name
-                </Label>
-                <Input
-                  value={pkg.name}
-                  onChange={(e) => updatePkg(pkgIdx, "name", e.target.value)}
-                  className="text-sm"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-                  Subtitle (e.g. "Two Lessons a Month")
-                </Label>
-                <Input
-                  value={pkg.subtitle}
-                  onChange={(e) =>
-                    updatePkg(pkgIdx, "subtitle", e.target.value)
-                  }
-                  className="text-sm"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {pkg.options.map((opt, optIdx) => (
-                <div
-                  key={optIdx}
-                  className="space-y-1.5 border border-border/40 rounded-md p-3"
-                >
-                  <p className="text-xs font-semibold text-muted-foreground">
-                    {opt.duration}
-                  </p>
-                  <div className="space-y-1.5">
-                    <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-                      Price
-                    </Label>
-                    <Input
-                      value={opt.price}
-                      onChange={(e) =>
-                        updateOption(pkgIdx, optIdx, "price", e.target.value)
-                      }
-                      className="text-sm"
-                      placeholder="$50"
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label className="text-xs text-muted-foreground uppercase tracking-wide">
-                      Savings badge (leave blank for none)
-                    </Label>
-                    <Input
-                      value={opt.savings ?? ""}
-                      onChange={(e) =>
-                        updateOption(pkgIdx, optIdx, "savings", e.target.value)
-                      }
-                      className="text-sm"
-                      placeholder="save $10"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-}
-
 // ── Checklist editor ───────────────────────────────────────────────────────
 function ChecklistEditor({
   items,
@@ -267,13 +147,6 @@ export function AdminEditor({
 }) {
   const router = useRouter();
   const [draft, setDraft] = useState<Record<string, string>>(initialContent);
-  const [packages, setPackages] = useState<Package[]>(() => {
-    try {
-      return JSON.parse(initialContent["services.packages"] ?? "[]");
-    } catch {
-      return [];
-    }
-  });
   const [lessonInfo, setLessonInfo] = useState<string[]>(() => {
     try {
       return JSON.parse(initialContent["services.lessonInfo"] ?? "[]");
@@ -305,19 +178,6 @@ export function AdminEditor({
     });
   }
 
-  function savePackages() {
-    startTransition(async () => {
-      try {
-        await updateManyContent({
-          "services.packages": JSON.stringify(packages),
-        });
-        toast.success("Packages saved!");
-      } catch {
-        toast.error("Save failed — please try again.");
-      }
-    });
-  }
-
   function saveLessonInfo() {
     startTransition(async () => {
       try {
@@ -331,13 +191,15 @@ export function AdminEditor({
     });
   }
 
-  function savePaymentMethods() {
+  function savePricingPayment() {
     startTransition(async () => {
       try {
         await updateManyContent({
+          "services.pricing.thirtyMin": draft["services.pricing.thirtyMin"] ?? "$50",
+          "services.pricing.oneHour": draft["services.pricing.oneHour"] ?? "$70",
           "services.paymentMethods": JSON.stringify(paymentMethods),
         });
-        toast.success("Payment methods saved!");
+        toast.success("Pricing & payment saved!");
       } catch {
         toast.error("Save failed — please try again.");
       }
@@ -797,7 +659,7 @@ export function AdminEditor({
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">
-                  The Gallant (Ages 9-18)
+                  The Gallant (Ages 9-17)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -847,36 +709,9 @@ export function AdminEditor({
 
             <Separator />
 
-            <div className="space-y-4">
-              <div>
-                <h2
-                  className="text-lg font-semibold text-primary"
-                  style={{ fontFamily: "var(--font-nunito)" }}
-                >
-                  Lesson Packages & Pricing
-                </h2>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Edit package names, subtitles, and prices below.
-                </p>
-              </div>
-              <PackagesEditor packages={packages} onChange={setPackages} />
-              <div className="flex justify-end pt-2">
-                <Button
-                  onClick={savePackages}
-                  disabled={isPending}
-                  className="gap-2"
-                >
-                  <Save className="w-4 h-4" />
-                  {isPending ? "Saving…" : "Save packages"}
-                </Button>
-              </div>
-            </div>
-
-            <Separator />
-
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Lesson Information</CardTitle>
+                <CardTitle className="text-base">Lesson and Helpful Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <ChecklistEditor items={lessonInfo} onChange={setLessonInfo} />
@@ -895,21 +730,36 @@ export function AdminEditor({
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Payment Methods</CardTitle>
+                <CardTitle className="text-base">Pricing, Payment, and Policy</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <Field
+                    label="30-Minute lesson price"
+                    contentKey="services.pricing.thirtyMin"
+                    value={draft["services.pricing.thirtyMin"] ?? "$50"}
+                    onChange={set}
+                  />
+                  <Field
+                    label="1-Hour lesson price"
+                    contentKey="services.pricing.oneHour"
+                    value={draft["services.pricing.oneHour"] ?? "$70"}
+                    onChange={set}
+                  />
+                </div>
+                <Separator />
                 <ChecklistEditor
                   items={paymentMethods}
                   onChange={setPaymentMethods}
                 />
                 <div className="flex justify-end pt-2">
                   <Button
-                    onClick={savePaymentMethods}
+                    onClick={savePricingPayment}
                     disabled={isPending}
                     className="gap-2"
                   >
                     <Save className="w-4 h-4" />
-                    {isPending ? "Saving…" : "Save payment methods"}
+                    {isPending ? "Saving…" : "Save pricing & payment"}
                   </Button>
                 </div>
               </CardContent>

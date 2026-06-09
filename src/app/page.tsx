@@ -130,9 +130,6 @@ export default async function Home() {
             {c["home.basics.title"] ?? "From Basics to Beyond"}
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            {c["home.basics.paragraph1"]}
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
             {c["home.basics.paragraph2"]}
           </p>
         </div>

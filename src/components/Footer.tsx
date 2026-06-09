@@ -8,7 +8,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             <div>
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'var(--font-nunito)' }}>evermore equine llc</h3>
+              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'var(--font-nunito)' }}>evermore equine</h3>
               <p className="text-primary-foreground/80 max-w-xs">A boutique, small-scale riding lesson facility dedicated to providing a personalized, high-quality equestrian learning experience focused on foundational horsemanship and safety in a peaceful setting.
               </p>
             </div>
