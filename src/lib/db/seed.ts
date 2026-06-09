@@ -327,7 +327,7 @@ const entries: Array<{ key: string; value: string }> = [
   { key: "contact.address.line2", value: "Bear Creek PA 18602" },
   { key: "contact.phone", value: "(570) 709-5501" },
   { key: "contact.phone.href", value: "15707095501" },
-  { key: "contact.email", value: "evermore.equine.llc@gmail.com" },
+  { key: "contact.email", value: "evermore.equine@gmail.com" },
 ];
 
 async function seed() {
