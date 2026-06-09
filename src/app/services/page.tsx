@@ -49,7 +49,7 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <div className="container px-4 md:px-6 py-16 md:py-24 space-y-24">
+      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24 space-y-24">
         {/* Age-Based Lesson Tiers */}
         <section>
           <div className="text-center mb-12 space-y-3">

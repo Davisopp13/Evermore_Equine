@@ -79,7 +79,7 @@ export default async function Home() {
       {/* Philosophy Section — Our Mission */}
       <section className="py-20 bg-secondary/30">
         <div
-          className="container px-4 md:px-6"
+          className="container mx-auto px-4 md:px-6"
           style={{ fontFamily: "var(--font-nunito)" }}
         >
           <div className="grid md:grid-cols-2 gap-12 items-center">

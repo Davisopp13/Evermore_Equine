@@ -31,7 +31,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Main Content */}
-      <div className="container px-4 md:px-6 py-16 space-y-24">
+      <div className="container mx-auto px-4 md:px-6 py-16 space-y-24">
         {/* The History of 180 White Haven Rd */}
         <section className="grid md:grid-cols-2 gap-12 items-center md:grid-flow-col-dense">
           <div className="space-y-6 md:col-start-2">
@@ -65,12 +65,12 @@ export default async function AboutPage() {
               </p>
             </div>
             <div className="space-y-3 flex flex-col items-center pt-8">
-              <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg !w-[268px] !h-[318px]">
+              <div className="relative rounded-xl overflow-hidden shadow-lg w-[268px] max-w-full" style={{ aspectRatio: "268/318" }}>
                 <Image
                   src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Big-red-School-1766590252852.png?width=8000&height=8000&resize=contain"
                   alt="Mariah with Big Red"
                   fill
-                  className="object-cover !w-[269px] !h-[321px] !max-w-[269px]"
+                  className="object-cover"
                 />
               </div>
               <p className="text-center text-xs text-muted-foreground italic">
@@ -84,13 +84,13 @@ export default async function AboutPage() {
 
         {/* Mariah's Dedication Section */}
         <section className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-3 !w-[464px] !h-[667px] flex flex-col items-center">
-            <div className="relative aspect-[4/5] md:aspect-square rounded-xl overflow-hidden shadow-lg !w-full !h-[656px]">
+          <div className="space-y-3 w-full md:w-[464px] flex flex-col items-center">
+            <div className="relative rounded-xl overflow-hidden shadow-lg w-full" style={{ aspectRatio: "464/656" }}>
               <Image
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/IMG_8834-1763680980805.jpg?width=8000&height=8000&resize=contain"
                 alt="Young rider on horse at Bear Creek property"
                 fill
-                className="object-cover !w-full !h-[657px] !max-w-full"
+                className="object-cover"
               />
             </div>
             <p className="text-center text-xs text-muted-foreground italic !whitespace-pre-line">
