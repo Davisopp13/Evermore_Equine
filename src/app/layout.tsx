@@ -6,6 +6,7 @@ import Script from "next/script";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { OpeningAnnouncement } from "@/components/OpeningAnnouncement";
 
 export const metadata: Metadata = {
   title: "evermore equine llc | Boutique Riding Lesson Facility",
@@ -40,6 +41,7 @@ export default function RootLayout({
           data-orchids-project-id="e1c444d2-b20c-4128-9d1e-7b509ac38088"
         />
         <ErrorReporter />
+        <OpeningAnnouncement />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
           strategy="afterInteractive"
