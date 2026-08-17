@@ -101,10 +101,10 @@ export default async function ContactPage() {
                   <h3 className="font-semibold text-primary mb-1">Email</h3>
                   <p className="text-muted-foreground">
                     <a
-                      href={`mailto:${c["contact.email"] ?? "evermore.equine@gmail.com"}`}
+                      href={`mailto:${c["contact.email"] ?? "connect@evermoreequine.com"}`}
                       className="text-primary underline hover:text-primary/80 transition-colors"
                     >
-                      {c["contact.email"] ?? "evermore.equine@gmail.com"}
+                      {c["contact.email"] ?? "connect@evermoreequine.com"}
                     </a>
                   </p>
                 </div>
