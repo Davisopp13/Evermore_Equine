@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Shield, TreePine } from "lucide-react";
 import { getAllContent } from "@/lib/actions/content";
+import { MeetTheHerd } from "@/components/MeetTheHerd";
 
 export default async function Home() {
   const c = await getAllContent();
@@ -135,8 +136,11 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Meet the Horses */}
+      <MeetTheHerd />
+
       {/* Core Values */}
-      <section className="py-20 bg-secondary/30">
+      <section className="py-20 bg-background">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="text-center mb-16 space-y-4 flex flex-col items-center">
             <h2
