@@ -269,8 +269,6 @@ export function AdminEditor({
     "services.tiers.gallant.paragraph2",
     "services.tiers.gallant.paragraph3",
     "services.tiers.gallant.paragraph4",
-    "services.tiers.trailblazer.paragraph1",
-    "services.tiers.trailblazer.paragraph2",
   ];
 
   // ── Contact tab keys ───────────────────────────────────────────────────
@@ -637,7 +635,7 @@ export function AdminEditor({
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">
-                  The Just Green (Ages 4-8)
+                  The Just Green (Ages 6-10)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -659,7 +657,7 @@ export function AdminEditor({
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">
-                  The Gallant (Ages 9-17)
+                  The Gallant (Ages 11-17)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -670,28 +668,6 @@ export function AdminEditor({
                     contentKey={`services.tiers.gallant.paragraph${n}`}
                     value={
                       draft[`services.tiers.gallant.paragraph${n}`] ?? ""
-                    }
-                    multiline
-                    onChange={set}
-                  />
-                ))}
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-base">
-                  The Trail Blazer (Ages 18+)
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {[1, 2].map((n) => (
-                  <Field
-                    key={n}
-                    label={`Paragraph ${n}`}
-                    contentKey={`services.tiers.trailblazer.paragraph${n}`}
-                    value={
-                      draft[`services.tiers.trailblazer.paragraph${n}`] ?? ""
                     }
                     multiline
                     onChange={set}

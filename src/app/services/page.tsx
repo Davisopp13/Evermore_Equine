@@ -60,12 +60,12 @@ export default async function ServicesPage() {
               What We Offer
             </h2>
             <p className="text-muted-foreground text-lg">
-              Tailored programs designed for every stage of riding.
+              Tailored programs designed for beginning and intermediate stages of riding.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* The Just Green — Ages 4-8 */}
+            {/* The Just Green — Ages 6-10 */}
             <Card className="border-border/50 hover:shadow-lg transition-all">
               <CardHeader className="text-center pb-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 mx-auto mb-4">
@@ -78,7 +78,7 @@ export default async function ServicesPage() {
                   The Just Green
                 </CardTitle>
                 <CardDescription className="text-base font-medium text-foreground/70 mt-2">
-                  Ages 4-8
+                  Ages 6-10
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -107,7 +107,7 @@ export default async function ServicesPage() {
               </CardContent>
             </Card>
 
-            {/* The Gallant — Ages 9-17 */}
+            {/* The Gallant — Ages 11-17 */}
             <Card className="border-border/50 hover:shadow-lg transition-all">
               <CardHeader className="text-center pb-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mx-auto mb-4">
@@ -120,13 +120,13 @@ export default async function ServicesPage() {
                   The Gallant
                 </CardTitle>
                 <CardDescription className="text-base font-medium text-foreground/70 mt-2">
-                  Ages 9-17
+                  Ages 11-17
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center">
                   <p className="text-sm text-muted-foreground italic">
-                    20 minutes hands-on in the barn • 40 minutes in the saddle
+                    30 minutes hands on in the barn and 30 minutes in the saddle.
                   </p>
                 </div>
                 <div className="pt-4 border-t border-border/50 space-y-3 text-left">
@@ -153,12 +153,6 @@ export default async function ServicesPage() {
             </Card>
           </div>
 
-          {/* Adult Riders notice */}
-          <div className="mt-8 text-center">
-            <p className="text-base text-muted-foreground">
-              <span className="font-semibold text-foreground">Adult Riders:</span> lessons upon request
-            </p>
-          </div>
         </section>
 
         {/* Pricing, Payment, and Policy */}

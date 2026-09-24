@@ -250,7 +250,7 @@ const entries: Array<{ key: string; value: string }> = [
   {
     key: "services.tiers.justGreen.paragraph1",
     value:
-      "We love our littles! At Evermore Equine, we offer a fun, hands-on experience for children 4-8 years old in a safe, confidence-building environment.",
+      "We love our littles! At Evermore Equine, we offer a fun, hands-on experience for children 6-10 years old in a safe, confidence-building environment.",
   },
   {
     key: "services.tiers.justGreen.paragraph2",
@@ -265,7 +265,7 @@ const entries: Array<{ key: string; value: string }> = [
   {
     key: "services.tiers.gallant.paragraph1",
     value:
-      "We offer a detailed lesson program for our students ages 9-18. Students will learn a strong foundation in horsemanship and correct skills in the saddle.",
+      "We offer a detailed lesson program for our students ages 11-17. Students will learn a strong foundation in horsemanship and correct skills in the saddle.",
   },
   {
     key: "services.tiers.gallant.paragraph2",
@@ -282,17 +282,6 @@ const entries: Array<{ key: string; value: string }> = [
     value:
       "We want students to take the knowledge they learn from Evermore Equine and implement their skills into all aspects of life.",
   },
-  {
-    key: "services.tiers.trailblazer.paragraph1",
-    value:
-      "We welcome all adult students! Our Trail Blazers don't follow a specific curriculum, rather we let our adult students choose how they want to structure their lessons.",
-  },
-  {
-    key: "services.tiers.trailblazer.paragraph2",
-    value:
-      "Whether you're a complete beginner or returning to riding after years away, we meet you where you are and support your individual goals at any experience level.",
-  },
-
   { key: "services.pricing.thirtyMin", value: "$50" },
   { key: "services.pricing.oneHour", value: "$70" },
   {
