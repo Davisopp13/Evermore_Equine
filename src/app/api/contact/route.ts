@@ -54,7 +54,7 @@ export async function POST(request: Request) {
         from,
         to: ["connect@evermoreequine.com"],
         reply_to: email,
-        subject: `Evermore Equine: ${interestLabel} inquiry`,
+        subject: `Evermore Equine: ${interestLabel}`,
         text,
       }),
       signal: AbortSignal.timeout(10000),
