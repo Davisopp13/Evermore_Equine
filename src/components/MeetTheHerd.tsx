@@ -20,7 +20,8 @@ import { ChevronLeft, ChevronRight, MoveHorizontal } from "lucide-react";
 const HORSES: { name: string; focus?: string }[] = [
   { name: "Duke", focus: "50% 22%" },
   { name: "Emmitt", focus: "50% 40%" },
-  { name: "Capy", focus: "60% 50%" },
+  { name: "Cappy", focus: "60% 50%" },
+  { name: "Red", focus: "50% 45%" },
 ];
 
 const SWIPE_DISTANCE = 110;
