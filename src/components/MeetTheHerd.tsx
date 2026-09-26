@@ -43,15 +43,25 @@ export function MeetTheHerd() {
   const [fling, setFling] = useState<Fling>(null);
   const [interacted, setInteracted] = useState(false);
   const deckRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(deckRef, { once: true, amount: 0.3 });
+  const inView = useInView(deckRef, { once: true, amount: 0.5 });
   const reduceMotion = useReducedMotion();
   const count = HORSES.length;
+
+  // The barn doors slide open shortly after the deck scrolls into view, then get out of the way.
+  const [doorsOpen, setDoorsOpen] = useState(false);
+  const [doorsGone, setDoorsGone] = useState(false);
+  useEffect(() => {
+    if (!inView || doorsOpen) return;
+    const t = setTimeout(() => setDoorsOpen(true), 450);
+    return () => clearTimeout(t);
+  }, [inView, doorsOpen]);
 
   // Swiping/flinging left moves forward through the herd; right goes back.
   const go = useCallback(
     (dir: -1 | 1) => {
       if (fling) return;
       setInteracted(true);
+      setDoorsOpen(true);
       if (reduceMotion) {
         setActive((a) => (a - dir + count) % count);
         return;
@@ -70,6 +80,7 @@ export function MeetTheHerd() {
   const jumpTo = (index: number) => {
     if (fling || index === active) return;
     setInteracted(true);
+    setDoorsOpen(true);
     setActive(index);
   };
 
@@ -192,7 +203,7 @@ export function MeetTheHerd() {
                     index={i}
                     depth={depth}
                     count={count}
-                    dealt={inView}
+                    dealt={doorsOpen}
                     interacted={interacted}
                     fling={depth === 0 ? fling : null}
                     reduceMotion={!!reduceMotion}
@@ -201,6 +212,10 @@ export function MeetTheHerd() {
                   />
                 );
               })}
+
+              {!reduceMotion && !doorsGone && (
+                <BarnDoors open={doorsOpen} onOpened={() => setDoorsGone(true)} />
+              )}
             </div>
 
             <div className="h-10 mt-8 flex items-center">
@@ -290,8 +305,8 @@ function HorseCard({
     if (!isFront) x.set(0);
   }, [isFront, x]);
 
-  // Deal the deck in back-to-front the first time it scrolls into view.
-  const dealDelay = !interacted && !reduceMotion ? (count - 1 - depth) * 0.14 : 0;
+  // Fan the deck out from behind the barn doors the first time they open.
+  const dealDelay = !interacted && !reduceMotion ? 0.45 + (count - 1 - depth) * 0.1 : 0;
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
@@ -300,14 +315,14 @@ function HorseCard({
   };
 
   const pose = depth < VISIBLE_DEPTH ? STACK_POSES[depth] : HIDDEN_POSE;
-  // Before the deck scrolls into view, cards wait below, then get "dealt" in back-to-front.
-  const undealt = { x: 0, y: 80, rotate: (index % 2 ? 1 : -1) * 8, scale: 0.9, opacity: 0 };
+  // Behind the closed doors the cards sit squared up; they fan out once the doors open.
+  const undealt = { ...STACK_POSES[0], opacity: depth < VISIBLE_DEPTH ? 1 : 0 };
 
   return (
     <motion.div
       className="absolute inset-0"
       style={{ zIndex: count - depth }}
-      initial={reduceMotion ? false : undealt}
+      initial={false}
       animate={dealt || reduceMotion ? pose : undealt}
       transition={{ type: "spring", stiffness: 260, damping: 26, delay: dealDelay }}
       aria-hidden={!isFront}
@@ -348,5 +363,87 @@ function HorseCard({
         </div>
       </motion.div>
     </motion.div>
+  );
+}
+
+// A pair of sliding barn doors covering the deck. They unlatch with a small
+// nudge, roll apart into the "walls", and then unmount.
+function BarnDoors({ open, onOpened }: { open: boolean; onOpened: () => void }) {
+  const slide = {
+    duration: 1.15,
+    times: [0, 0.14, 1],
+    ease: [0.45, 0, 0.2, 1] as const,
+  };
+
+  return (
+    <div className="absolute -inset-2 z-20 overflow-hidden rounded-2xl pointer-events-none" aria-hidden>
+      <motion.div
+        className="absolute inset-y-0 left-0 w-1/2"
+        initial={false}
+        animate={open ? { x: ["0%", "3%", "-103%"] } : { x: "0%" }}
+        transition={slide}
+      >
+        <BarnDoor side="left" />
+      </motion.div>
+      <motion.div
+        className="absolute inset-y-0 right-0 w-1/2"
+        initial={false}
+        animate={open ? { x: ["0%", "-3%", "103%"] } : { x: "0%" }}
+        transition={slide}
+        onAnimationComplete={() => {
+          if (open) onOpened();
+        }}
+      >
+        <BarnDoor side="right" />
+      </motion.div>
+    </div>
+  );
+}
+
+function BarnDoor({ side }: { side: "left" | "right" }) {
+  const trim = "var(--primary-foreground)";
+  return (
+    <div
+      className={`relative h-full w-full bg-primary shadow-2xl ${
+        side === "left" ? "rounded-l-2xl" : "rounded-r-2xl"
+      }`}
+      style={{
+        // Vertical boards with a soft top-to-bottom light falloff.
+        backgroundImage:
+          "repeating-linear-gradient(90deg, transparent 0 calc(20% - 1.5px), rgba(0,0,0,0.28) calc(20% - 1.5px) 20%), linear-gradient(180deg, rgba(255,255,255,0.08), transparent 45%, rgba(0,0,0,0.18))",
+      }}
+    >
+      {/* Frame, middle rail, and an X brace in each half */}
+      <svg
+        className="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] overflow-visible opacity-60"
+        viewBox="0 0 100 200"
+        preserveAspectRatio="none"
+        fill="none"
+        stroke={trim}
+        strokeLinecap="square"
+      >
+        <g strokeWidth={8}>
+          <rect x="0" y="0" width="100" height="200" vectorEffect="non-scaling-stroke" />
+          <line x1="0" y1="100" x2="100" y2="100" vectorEffect="non-scaling-stroke" />
+          <line x1="0" y1="0" x2="100" y2="100" vectorEffect="non-scaling-stroke" />
+          <line x1="100" y1="0" x2="0" y2="100" vectorEffect="non-scaling-stroke" />
+          <line x1="0" y1="100" x2="100" y2="200" vectorEffect="non-scaling-stroke" />
+          <line x1="100" y1="100" x2="0" y2="200" vectorEffect="non-scaling-stroke" />
+        </g>
+      </svg>
+
+      {/* Handle by the center seam */}
+      <div
+        className={`absolute top-1/2 -translate-y-1/2 h-16 w-2 rounded-full shadow-md ${
+          side === "left" ? "right-5" : "left-5"
+        }`}
+        style={{ background: "linear-gradient(90deg, #b08a4a, #e2c27d, #9c7639)" }}
+      />
+
+      {/* Shadow line where the doors meet */}
+      <div
+        className={`absolute inset-y-0 w-px bg-black/40 ${side === "left" ? "right-0" : "left-0"}`}
+      />
+    </div>
   );
 }
