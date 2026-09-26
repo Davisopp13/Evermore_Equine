@@ -354,9 +354,11 @@ function HorseCard({
           />
           <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/25 to-transparent" />
         </div>
-        <div className="h-16 md:h-[4.5rem] flex items-center justify-center">
+        {/* Great Day's capitals rise ~0.4em above its line box, so the row leaves
+            room for them, and `relative` keeps them painted above the photo. */}
+        <div className="h-20 md:h-24 flex items-center justify-center">
           <span
-            className="text-4xl md:text-[2.75rem] leading-none text-primary"
+            className="relative text-4xl md:text-[2.75rem] leading-none text-primary"
             style={{ fontFamily: "var(--font-great-day)" }}
           >
             {horse.name}
