@@ -1,7 +1,6 @@
 export const dynamic = "force-dynamic";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { getAllContent } from "@/lib/actions/content";
 import { MeetTheHerd } from "@/components/MeetTheHerd";
@@ -153,22 +152,6 @@ export default async function Home() {
           </p>
         </div>
       </section>
-
-      {/* Mobile action bar */}
-      <div id="mobile-action-bar" className="fixed inset-x-3 bottom-4 z-40 flex items-center justify-between rounded-[22px] bg-forest py-2.5 pl-5 pr-2.5 shadow-[0_16px_36px_-14px_rgba(2,50,32,0.6)] md:hidden">
-        <span className="flex flex-col text-cream">
-          <span className="text-[15px] font-extrabold">
-            Lessons from {c["services.pricing.thirtyMin"] || "$50"}
-          </span>
-          <span className="text-xs text-sage">Private &middot; helmets provided</span>
-        </span>
-        <Link
-          href="/contact"
-          className="flex h-12 items-center rounded-full bg-wheat px-5 text-[15px] font-extrabold text-forest"
-        >
-          Schedule a lesson
-        </Link>
-      </div>
     </div>
   );
 }
