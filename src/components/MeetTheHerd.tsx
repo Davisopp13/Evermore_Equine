@@ -98,7 +98,7 @@ export function MeetTheHerd() {
   const current = HORSES[active];
 
   return (
-    <section className="py-24 bg-secondary/30 overflow-hidden">
+    <section id="horses" className="py-20 lg:py-28 bg-sand overflow-hidden">
       <div
         className="container mx-auto px-4 md:px-6"
         style={{ fontFamily: "var(--font-nunito)" }}
@@ -112,13 +112,13 @@ export function MeetTheHerd() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-              Welcome to the Barn
+            <p className="font-script text-[28px] sm:text-[33px] leading-none text-pine">
+              the herd
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">
+            <h2 className="text-4xl sm:text-[50px] leading-[1.1] font-extrabold text-forest">
               Meet the Horses
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0">
+            <p className="text-lg sm:text-[19px] text-bark leading-[1.7] max-w-md mx-auto md:mx-0">
               Every lesson starts with a great partner. Swipe through to say
               hello to the horses who make Evermore home.
             </p>

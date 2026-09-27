@@ -6,7 +6,7 @@ import Script from "next/script";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { OpeningAnnouncement } from "@/components/OpeningAnnouncement";
+import { AnnouncementBar } from "@/components/AnnouncementBar";
 
 export const metadata: Metadata = {
   title: "evermore equine llc | Boutique Riding Lesson Facility",
@@ -25,15 +25,14 @@ export default function RootLayout({
     <html lang="en">
         <head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;700;800;900&display=swap" />
-          <link href="https://fonts.cdnfonts.com/css/great-day-personal-use" rel="stylesheet" />
           <style>{`
           :root {
             --font-nunito: 'Nunito', sans-serif;
-            --font-great-day: 'Great Day Personal Use', cursive;
+            --font-great-day: 'Great Day', 'Great Day Personal Use', cursive;
           }
         `}</style>
         </head>
-      <body className="antialiased min-h-screen flex flex-col bg-background text-foreground">
+      <body className="antialiased min-h-screen flex flex-col bg-cream text-ink font-body">
         <Script
           id="orchids-browser-logs"
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts/orchids-browser-logs.js"
@@ -41,7 +40,7 @@ export default function RootLayout({
           data-orchids-project-id="e1c444d2-b20c-4128-9d1e-7b509ac38088"
         />
         <ErrorReporter />
-        <OpeningAnnouncement />
+        <AnnouncementBar />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
           strategy="afterInteractive"

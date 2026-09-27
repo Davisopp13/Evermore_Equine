@@ -1,105 +1,106 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin, Phone } from "lucide-react";
+
+const LOGO =
+  "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/EE-Logo-1763684405565.JPG?width=8000&height=8000&resize=contain";
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-            <div>
-              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: 'var(--font-nunito)' }}>evermore equine</h3>
-              <p className="text-primary-foreground/80 max-w-xs">A boutique, small-scale riding lesson facility dedicated to providing a personalized, high-quality equestrian learning experience focused on foundational horsemanship and safety in a peaceful setting.
-              </p>
-            </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3 text-primary-foreground/80">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-5 w-5" />
-                <span>180 White Haven Rd., Bear Creek, PA 18602</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-5 w-5" />
-                <span>(570) 709-5501</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-5 w-5" />
-                <a href="mailto:connect@evermoreequine.com" className="hover:text-white transition-colors">
-                  connect@evermoreequine.com
-                </a>
-              </li>
-            </ul>
+    <footer className="bg-night text-sage">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4 lg:px-8">
+        <div className="space-y-4 md:col-span-2">
+          <div className="flex items-center gap-3">
+            <Image
+              src={LOGO}
+              alt="evermore equine logo"
+              width={56}
+              height={56}
+              className="size-14 rounded-lg object-contain"
+            />
+            <span className="font-script text-[30px] leading-none text-cream">
+              evermore equine
+            </span>
           </div>
+          <p className="max-w-md text-[15px] leading-relaxed">
+            A boutique riding lesson facility focused on foundational horsemanship and
+            safety, in a peaceful setting on 17 acres in Bear Creek, PA.
+          </p>
+        </div>
 
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-primary-foreground/80">
-              <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-white transition-colors">
-                  Services & Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors !whitespace-pre-line">Schedule & Contact
+        <div className="space-y-2.5 text-[15px]">
+          <p className="font-extrabold text-cream">Visit</p>
+          <p>180 White Haven Rd.</p>
+          <p>Bear Creek, PA 18602</p>
+          <p>
+            <a href="tel:15707095501" className="hover:text-cream">
+              (570) 709-5501
+            </a>
+          </p>
+          <p>
+            <a href="mailto:connect@evermoreequine.com" className="hover:text-cream">
+              connect@evermoreequine.com
+            </a>
+          </p>
+        </div>
 
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="space-y-2.5 text-[15px]">
+          <p className="font-extrabold text-cream">Explore</p>
+          <p>
+            <Link href="/about" className="hover:text-cream">
+              Our Story
+            </Link>
+          </p>
+          <p>
+            <Link href="/services" className="hover:text-cream">
+              Services &amp; Pricing
+            </Link>
+          </p>
+          <p>
+            <Link href="/contact" className="hover:text-cream">
+              Schedule &amp; Contact
+            </Link>
+          </p>
         </div>
       </div>
-      <div className="border-t border-primary-foreground/20 bg-primary/90">
-        <div className="mx-auto max-w-7xl px-6 py-6 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="mt-4 md:order-2 md:mt-0">
-            <p className="text-center text-xs leading-5 text-primary-foreground/60">
-              &reg; {new Date().getFullYear()} evermore equine LLC. All rights reserved
-            </p>
-          </div>
-          <div className="mt-4 md:order-2 md:mt-0 flex items-center gap-4">
+
+      <div className="border-t border-sage/20">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-6 text-[13px] md:flex-row md:justify-between lg:px-8">
+          <p>&reg; {new Date().getFullYear()} evermore equine LLC. All rights reserved</p>
+          <div className="flex flex-wrap items-center justify-center gap-5">
             <a
               href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Website-Terms-Conditions.docx-1765564053765.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-primary-foreground/60 hover:text-white transition-colors"
+              className="hover:text-cream"
             >
-              Terms & Conditions
+              Terms &amp; Conditions
             </a>
             <a
               href="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/Privacy-Policy-1765563925664.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-primary-foreground/60 hover:text-white transition-colors"
+              className="hover:text-cream"
             >
               Privacy Policy
             </a>
-          </div>
-          <div className="mt-4 md:order-1 md:mt-0">
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-xs text-primary-foreground/50">Website built by</span>
-              <a
-                href="https://www.docodelab.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="opacity-70 hover:opacity-100 transition-opacity">
-                <Image
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/DO-CODE-LAB-White-Logo-1763698867902.png?width=8000&height=8000&resize=contain"
-                  alt="DoCodeLab Logo"
-                  width={160}
-                  height={48}
-                  className="h-10 w-32 md:h-12 md:w-40 object-contain" />
-
-              </a>
-            </div>
+            <a
+              href="https://www.docodelab.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 opacity-70 transition-opacity hover:opacity-100"
+            >
+              <span>Website by</span>
+              <Image
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/DO-CODE-LAB-White-Logo-1763698867902.png?width=8000&height=8000&resize=contain"
+                alt="DO Code Lab"
+                width={96}
+                height={32}
+                className="h-8 w-24 object-contain"
+              />
+            </a>
           </div>
         </div>
       </div>
-    </footer>);
-
+    </footer>
+  );
 }
