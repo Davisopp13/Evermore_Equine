@@ -81,20 +81,6 @@ export default async function Home() {
           <p className="ee-rise-3 font-script text-[28px] text-sand sm:text-[36px] lg:text-[44px]">
             &ldquo;{tagline}&rdquo;
           </p>
-          <div className="ee-rise-3 mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Link
-              href="/contact"
-              className="rounded-full bg-cream px-8 py-4 text-[17px] font-bold text-forest transition-transform hover:-translate-y-0.5"
-            >
-              Schedule a lesson
-            </Link>
-            <Link
-              href="/about"
-              className="rounded-full border-[1.5px] border-cream/70 px-8 py-4 text-[17px] font-bold text-cream transition-transform hover:-translate-y-0.5"
-            >
-              Meet Mariah &amp; Cappy
-            </Link>
-          </div>
         </div>
         <ChevronDown className="ee-bob absolute bottom-7 left-1/2 -ml-3 size-6 text-sand" aria-hidden />
       </section>
