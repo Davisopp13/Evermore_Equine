@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 
 const LOGO =
@@ -7,7 +6,7 @@ const LOGO =
 export function Footer() {
   return (
     <footer className="bg-night text-sage">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3 lg:px-8">
         <div className="space-y-4 md:col-span-2">
           <div className="flex items-center gap-3">
             <Image
@@ -40,25 +39,6 @@ export function Footer() {
             <a href="mailto:connect@evermoreequine.com" className="hover:text-cream">
               connect@evermoreequine.com
             </a>
-          </p>
-        </div>
-
-        <div className="space-y-2.5 text-[15px]">
-          <p className="font-extrabold text-cream">Explore</p>
-          <p>
-            <Link href="/about" className="hover:text-cream">
-              Our Story
-            </Link>
-          </p>
-          <p>
-            <Link href="/services" className="hover:text-cream">
-              Services &amp; Pricing
-            </Link>
-          </p>
-          <p>
-            <Link href="/contact" className="hover:text-cream">
-              Schedule &amp; Contact
-            </Link>
           </p>
         </div>
       </div>
