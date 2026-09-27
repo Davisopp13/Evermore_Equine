@@ -2,12 +2,10 @@ export const dynamic = "force-dynamic";
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Award, ChevronDown, MapPin, Sprout } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { getAllContent } from "@/lib/actions/content";
 import { MeetTheHerd } from "@/components/MeetTheHerd";
 import { ValuesTabs } from "@/components/home/ValuesTabs";
-import { HoursCard } from "@/components/home/HoursCard";
-import { FirstRideForm } from "@/components/home/FirstRideForm";
 
 const IMG = {
   forest:
@@ -38,8 +36,6 @@ function Script({ children, className = "" }: { children: React.ReactNode; class
 export default async function Home() {
   const c = await getAllContent();
   const tagline = c["home.hero.tagline"] || "where passion makes progress";
-  const phone = c["contact.phone.href"] || "15707095501";
-  const email = c["contact.email"] || "connect@evermoreequine.com";
 
   const values = [
     {
@@ -59,58 +55,6 @@ export default async function Home() {
       body: "Seventeen acres of wooded land: warm, minimal and distraction-free, so you can connect with nature.",
       img: IMG.paddock,
       alt: "Two horses grazing in a quiet paddock",
-    },
-  ];
-
-  const programs = [
-    {
-      ages: "AGES 6 TO 10",
-      name: "The Just Green",
-      time: "15 min in the barn · 15 min in the saddle",
-      icon: Sprout,
-      lead: "A “Green” horse or rider is inexperienced but is eager and ready to learn!",
-      paragraphs: [
-        c["services.tiers.justGreen.paragraph1"] ||
-          "We love our littles! At Evermore Equine, we offer a fun, hands-on experience for children 6-10 years old in a safe, confidence-building environment.",
-        c["services.tiers.justGreen.paragraph2"] ||
-          "Our lessons focus on teaching basic horsemanship skills through age-appropriate activities. Children learn horse safety, grooming techniques, and balancing on the horse.",
-        c["services.tiers.justGreen.paragraph3"] ||
-          "Our program is relaxed with no structured curriculum. Each lesson is based on having fun and learning something new each time. We believe a good, stable foundation sets our young ones up for success!",
-      ],
-    },
-    {
-      ages: "AGES 11 TO 17",
-      name: "The Gallant",
-      time: "30 min in the barn · 30 min in the saddle",
-      icon: Award,
-      lead: "Equestrians often use the word “Gallant” to describe horse and rider alike as brave, honest and noble.",
-      paragraphs: [
-        c["services.tiers.gallant.paragraph1"] ||
-          "We offer a detailed lesson program for our students ages 11-17. Students will learn a strong foundation in horsemanship and correct skills in the saddle.",
-        c["services.tiers.gallant.paragraph2"] ||
-          "As students advance, we emphasize responsibility, confidence, and goal-setting, encouraging riders to grow both in and out of the saddle. Our program offers hands-on learning in a positive environment.",
-        c["services.tiers.gallant.paragraph3"] ||
-          "Each Gallant student will receive a hard copy detailed packet of level I checklist materials to work through at their own pace. We work through the curriculum in a positive and structured setting.",
-        c["services.tiers.gallant.paragraph4"] ||
-          "We want students to take the knowledge they learn from Evermore Equine and implement their skills into all aspects of life.",
-      ],
-    },
-  ].map((p) => ({ ...p, paragraphs: p.paragraphs.map((t) => t.replace(/\s*[\u2014\u2013]\s*(\w)/g, (_m: string, ch: string) => ". " + ch.toUpperCase())) }));
-
-  const noDash = (t: string) => t.replace(/\s+[-\u2013\u2014]\s+/g, " to ");
-  const seasons: [
-    { label: string; days: string; time: string },
-    { label: string; days: string; time: string },
-  ] = [
-    {
-      label: "April to November",
-      days: noDash(c["contact.hours.summer.days"] || "Tuesday through Saturday"),
-      time: noDash(c["contact.hours.summer.time"] || "9am to 7pm"),
-    },
-    {
-      label: "December to March",
-      days: noDash(c["contact.hours.winter.days"] || "Friday, Saturday, Sunday"),
-      time: noDash(c["contact.hours.winter.time"] || "TBD"),
     },
   ];
 
@@ -214,127 +158,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Programs */}
-      <section id="programs" className="px-6 py-20 lg:px-8 lg:py-28">
-        <div className="mx-auto flex max-w-[900px] flex-col gap-12">
-          <div className="flex flex-col items-center gap-2.5 text-center">
-            <Script>from basics to beyond</Script>
-            <h2 className="text-3xl font-extrabold text-forest sm:text-[48px]">Programs we offer</h2>
-          </div>
-          <div className="grid gap-7 md:grid-cols-2">
-            {programs.map((p) => (
-              <article
-                key={p.name}
-                className="ee-lift flex flex-col gap-4 rounded-3xl border border-line bg-white p-7 sm:p-9"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full bg-mint px-3 py-1.5 text-[13px] font-extrabold tracking-[0.04em] text-moss">
-                    {p.ages}
-                  </span>
-                  <p.icon className="size-7 text-pine" strokeWidth={1.6} aria-hidden />
-                </div>
-                <h3 className="text-[28px] font-extrabold text-forest">{p.name}</h3>
-                <p className="text-[15px] font-bold text-pine">{p.time}</p>
-                <div className="flex flex-col gap-3 border-t border-line pt-4 text-base leading-[1.65]">
-                  <p className="font-bold text-ink">{p.lead}</p>
-                  {p.paragraphs.map((t) => (
-                    <p key={t.slice(0, 24)} className="text-bark">
-                      {t}
-                    </p>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="flex justify-center">
-            <Link
-              href="/services"
-              className="flex items-center gap-2 text-[17px] font-bold text-forest hover:text-pine"
-            >
-              See pricing &amp; lesson details
-              <ArrowRight className="size-[18px]" aria-hidden />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Meet the family */}
-      <section className="bg-sand px-6 py-20 lg:px-8 lg:py-28">
-        <div className="mx-auto grid max-w-7xl items-center gap-7 lg:grid-cols-12">
-          <div className="flex flex-col gap-4 lg:col-span-4">
-            <Script>where it all began</Script>
-            <h2 className="text-3xl font-extrabold leading-[1.1] text-forest sm:text-[46px]">
-              Meet the family behind the barn
-            </h2>
-            <p className="text-lg leading-[1.7] text-bark">
-              From a family pony named Cappy to a barn of her own: Mariah&rsquo;s story, and the
-              great-grandfather it honors.
-            </p>
-            <Link
-              href="/about"
-              className="flex items-center gap-2 text-[17px] font-bold text-forest hover:text-pine"
-            >
-              Read our story
-              <ArrowRight className="size-[18px]" aria-hidden />
-            </Link>
-          </div>
-          {[
-            { name: "Mariah", sub: "Founder & instructor · B.S. Equine Performance", img: IMG.mariah, alt: "Mariah standing with her chestnut horse", pos: "center 20%" },
-            { name: "Cappy", sub: "The family pony who started it all", img: IMG.cappy, alt: "Young Mariah riding Cappy, the family pony", pos: "center 30%" },
-          ].map((p) => (
-            <Link
-              key={p.name}
-              href="/about"
-              className="ee-lift ee-zoom flex flex-col overflow-hidden rounded-3xl bg-cream sm:col-span-1 lg:col-span-4"
-            >
-              <div className="relative h-[340px] overflow-hidden sm:h-[380px]">
-                <Image
-                  src={p.img}
-                  alt={p.alt}
-                  fill
-                  sizes="(min-width: 1024px) 400px, 100vw"
-                  className="object-cover"
-                  style={{ objectPosition: p.pos }}
-                />
-              </div>
-              <div className="flex flex-col gap-1 px-6 py-5">
-                <span className="font-script text-[29px] leading-none text-forest">{p.name}</span>
-                <span className="text-[15px] text-bark">{p.sub}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Visit */}
-      <section id="visit" className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-20 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-28">
-        <div className="relative min-h-[320px] overflow-hidden rounded-[28px] lg:min-h-[520px]">
-          <Image
-            src={IMG.aerial}
-            alt="Aerial view of the barn and pastures surrounded by forest"
-            fill
-            sizes="(min-width: 1024px) 600px, 100vw"
-            className="object-cover"
-          />
-          <div className="absolute left-4 right-4 top-4 flex items-center gap-2 rounded-2xl bg-cream px-4 py-2.5 text-sm font-bold text-forest sm:right-auto sm:left-6 sm:top-6 sm:rounded-full sm:text-[15px]">
-            <MapPin className="size-[18px]" aria-hidden />
-            180 White Haven Rd., Bear Creek PA 18602
-          </div>
-        </div>
-        <div className="flex flex-col gap-7">
-          <div className="flex flex-col gap-2.5">
-            <Script>come see us</Script>
-            <h2 className="text-3xl font-extrabold text-forest sm:text-[46px]">Plan your visit</h2>
-          </div>
-          <HoursCard seasons={seasons} phone={phone} email={email} />
-          <FirstRideForm />
-        </div>
-      </section>
-
       {/* Tagline band */}
-      <section className="relative flex h-[300px] items-center justify-center overflow-hidden sm:h-[360px]">
-        <Image src={IMG.paddock} alt="" fill sizes="100vw" className="object-cover object-[center_60%]" />
-        <div className="absolute inset-0 bg-[rgba(2,50,32,0.62)]" />
+      <section className="relative flex h-[300px] items-center justify-center overflow-hidden bg-forest sm:h-[360px]">
         <div className="relative flex max-w-3xl flex-col items-center gap-3.5 px-6 text-center text-cream">
           <p className="font-script text-[44px] leading-none sm:text-[64px]">{tagline}</p>
           <p className="text-lg leading-relaxed text-oat sm:text-[19px]">
