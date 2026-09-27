@@ -248,8 +248,3 @@ nextjs-portal {
   .ee-rise, .ee-rise-2, .ee-rise-3, .ee-bob, .ee-drift { animation: none; }
   .ee-lift:hover, .ee-zoom:hover img { transform: none; }
 }
-
-/* Leave room for the home page's fixed mobile action bar */
-@media (max-width: 767px) {
-  body:has(#mobile-action-bar) footer { padding-bottom: 6rem; }
-}
