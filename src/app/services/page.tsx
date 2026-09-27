@@ -65,7 +65,7 @@ export default async function ServicesPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {/* The Just Green — Ages 6-10 */}
+            {/* The Just Green (Ages 6-10) */}
             <Card className="border-border/50 hover:shadow-lg transition-all">
               <CardHeader className="text-center pb-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 mx-auto mb-4">
@@ -107,7 +107,7 @@ export default async function ServicesPage() {
               </CardContent>
             </Card>
 
-            {/* The Gallant — Ages 11-17 */}
+            {/* The Gallant (Ages 11-17) */}
             <Card className="border-border/50 hover:shadow-lg transition-all">
               <CardHeader className="text-center pb-4">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mx-auto mb-4">

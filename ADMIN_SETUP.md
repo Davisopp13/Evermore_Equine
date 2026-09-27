@@ -12,7 +12,7 @@ The admin panel lives at `/admin` and lets you edit all site content (copy, pric
 
 ---
 
-## Step 1 — Environment Variables
+## Step 1: Environment Variables
 
 Create `.env.local` in the project root:
 
@@ -38,7 +38,7 @@ NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
 
 ---
 
-## Step 2 — Install Dependencies
+## Step 2: Install Dependencies
 
 ```bash
 bun install
@@ -46,7 +46,7 @@ bun install
 
 ---
 
-## Step 3 — Run Database Migrations
+## Step 3: Run Database Migrations
 
 Creates all required tables (`user`, `session`, `account`, `verification`, `site_content`):
 
@@ -62,7 +62,7 @@ bun run db:studio
 
 ---
 
-## Step 4 — Seed Site Content
+## Step 4: Seed Site Content
 
 Populates the `site_content` table with all default website copy and pricing packages:
 
@@ -70,26 +70,26 @@ Populates the `site_content` table with all default website copy and pricing pac
 bun run db:seed
 ```
 
-This is safe to re-run — it uses upsert logic and won't overwrite edits you've made through the admin panel.
+This is safe to re-run. It uses upsert logic and won't overwrite edits you've made through the admin panel.
 
 ---
 
-## Step 5 — Create an Admin User
+## Step 5: Create an Admin User
 
 ```bash
 bun run db:admin
 ```
 
 You'll be prompted for:
-- **Email** — the login email
-- **Password** — must be 8+ characters (input is hidden)
-- **Name** — display name, defaults to "Admin"
+- **Email**: the login email
+- **Password**: must be 8+ characters (input is hidden)
+- **Name**: display name, defaults to "Admin"
 
 This only needs to be run once. The admin panel has no self-serve sign-up.
 
 ---
 
-## Step 6 — Start the Dev Server
+## Step 6: Start the Dev Server
 
 ```bash
 bun run dev
@@ -97,7 +97,7 @@ bun run dev
 
 ---
 
-## Step 7 — Sign In
+## Step 7: Sign In
 
 1. Open `http://localhost:3000/admin/login`
 2. Enter the email and password from Step 5

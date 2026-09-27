@@ -156,7 +156,7 @@ export function MeetTheHerd() {
               </button>
             </div>
 
-            {/* Stall-board of names — jump straight to a horse */}
+            {/* Stall-board of names: jump straight to a horse */}
             <ul className="flex flex-wrap justify-center md:justify-start gap-2">
               {HORSES.map((horse, i) => (
                 <li key={horse.name}>

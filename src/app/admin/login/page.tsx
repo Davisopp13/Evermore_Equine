@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
           >
             evermore equine
           </CardTitle>
-          <CardDescription>Admin access — sign in to continue</CardDescription>
+          <CardDescription>Admin access: sign in to continue</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

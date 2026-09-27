@@ -2,7 +2,7 @@ import { createClient } from "@libsql/client";
 import { drizzle } from "drizzle-orm/libsql";
 import { siteContent } from "./schema";
 
-// Bun automatically loads .env.local — no extra dotenv import needed.
+// Bun automatically loads .env.local, so no extra dotenv import is needed.
 
 const client = createClient({
   url: process.env.DATABASE_URL!,
@@ -260,7 +260,7 @@ const entries: Array<{ key: string; value: string }> = [
   {
     key: "services.tiers.justGreen.paragraph3",
     value:
-      "Our program is relaxed with no structured curriculum—each lesson is based on having fun and learning something new each time. We believe a good, stable foundation sets our young ones up for success!",
+      "Our program is relaxed with no structured curriculum. Each lesson is based on having fun and learning something new each time. We believe a good, stable foundation sets our young ones up for success!",
   },
   {
     key: "services.tiers.gallant.paragraph1",
