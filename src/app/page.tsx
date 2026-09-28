@@ -153,12 +153,12 @@ export default async function Home() {
             Follow your passions, in and out of the barn.
           </p>
         </div>
-        <div className="ee-zoom relative aspect-[1044/672] w-full max-w-lg overflow-hidden rounded-[28px]">
+        <div className="ee-zoom relative aspect-[1044/672] w-full max-w-xl overflow-hidden rounded-[28px]">
           <Image
             src={IMG.barnJump}
             alt="A rider and chestnut horse clearing a jump in front of the barn"
             fill
-            sizes="(min-width: 640px) 512px, 100vw"
+            sizes="(min-width: 640px) 576px, 100vw"
             className="object-cover"
           />
         </div>
