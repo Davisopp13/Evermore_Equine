@@ -27,7 +27,6 @@ export function Footer() {
         </div>
 
         <div className="space-y-2.5 text-[15px]">
-          <p className="font-extrabold text-cream">Visit</p>
           <p>180 White Haven Rd.</p>
           <p>Bear Creek, PA 18602</p>
           <p>
