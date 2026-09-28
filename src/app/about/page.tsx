@@ -138,9 +138,8 @@ export default async function AboutPage() {
         </div>
         <div className="grid w-full items-center gap-12 md:grid-cols-[minmax(0,1fr)_300px] md:gap-[72px]">
           <div className="flex flex-col gap-5 md:pl-6">
-            <span aria-hidden="true" className="block h-11 text-[96px] font-extrabold leading-[0.6] text-wheat">&ldquo;</span>
             <blockquote className="text-xl italic leading-[1.6] text-forest sm:text-[23px]">
-              <p>And I couldn&apos;t be sure</p>
+              <p><span className="-ml-[0.4em]">&ldquo;</span>And I couldn&apos;t be sure</p>
               <p>I had a feeling so peculiar</p>
               <p>This pain wouldn&apos;t be for</p>
               <p className="font-script text-[40px] not-italic leading-[1.3] text-forest sm:text-[44px]">evermore.&rdquo;</p>
