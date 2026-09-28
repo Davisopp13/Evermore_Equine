@@ -136,19 +136,23 @@ export default async function AboutPage() {
             )}
           </div>
         </div>
-        <div className="flex w-full flex-col items-center gap-10 md:flex-row">
-          <blockquote className="flex-1 rounded-[18px] bg-sand px-7 py-6 text-base italic leading-relaxed text-ink">
-                <p>&ldquo;And I couldn&apos;t be sure</p>
-                <p>I had a feeling so peculiar</p>
-                <p>This pain wouldn&apos;t be for</p>
-                <p>Evermore.&rdquo;</p>
-              </blockquote>
-          <figure className="flex shrink-0 flex-col items-center gap-2.5">
-            <div className="relative w-[260px] overflow-hidden rounded-[18px] shadow-xl" style={{ aspectRatio: "1119/1400" }}>
-              <Image src={IMG.bigRedHoughton} alt="Mariah standing with Big Red in a grassy field" fill sizes="260px" className="object-cover" />
+        <div className="grid w-full items-center gap-12 md:grid-cols-[minmax(0,1fr)_300px] md:gap-[72px]">
+          <div className="flex flex-col gap-5 md:pl-6">
+            <span aria-hidden="true" className="block h-11 text-[96px] font-extrabold leading-[0.6] text-wheat">&ldquo;</span>
+            <blockquote className="text-xl italic leading-[1.6] text-forest sm:text-[23px]">
+              <p>And I couldn&apos;t be sure</p>
+              <p>I had a feeling so peculiar</p>
+              <p>This pain wouldn&apos;t be for</p>
+              <p className="font-script text-[40px] not-italic leading-[1.3] text-forest sm:text-[44px]">evermore.</p>
+            </blockquote>
+          </div>
+          <figure className="mx-auto flex w-full max-w-[300px] flex-col gap-3.5">
+            <div className="relative w-full overflow-hidden rounded-[18px] shadow-[0_24px_40px_-16px_rgba(2,50,32,0.35)]" style={{ aspectRatio: "1119/1400" }}>
+              <Image src={IMG.bigRedHoughton} alt="Mariah standing with Big Red in a grassy field" fill sizes="300px" className="object-cover" />
             </div>
-            <figcaption>
-              <Caption>Mariah and Big Red at Houghton University circa 2019</Caption>
+            <figcaption className="flex flex-col items-center gap-0.5 text-center">
+              <span className="text-[15px] font-bold text-forest">Mariah &amp; Big Red</span>
+              <span className="text-[13px] text-bark">Houghton University · 2019</span>
             </figcaption>
           </figure>
         </div>
