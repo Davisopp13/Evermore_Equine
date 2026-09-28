@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const LOGO =
@@ -59,13 +59,6 @@ export function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href="/contact"
-            className="flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-cream transition-transform hover:-translate-y-0.5"
-          >
-            Schedule a lesson
-            <ArrowRight className="size-4" aria-hidden />
-          </Link>
         </nav>
 
         <button
