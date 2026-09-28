@@ -9,12 +9,14 @@ import { ValuesTabs } from "@/components/home/ValuesTabs";
 const IMG = {
   forest:
     "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e1c444d2-b20c-4128-9d1e-7b509ac38088/Attachment-1-1769784170295.png?width=8000&height=8000&resize=contain",
-  jump: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/_MG_8430-1-resized-1766587431984.jpg?width=8000&height=8000&resize=contain",
   paddock:
     "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/zoomed-in-horses-resized-1766587867527.jpg?width=8000&height=8000&resize=contain",
-  mariah: "/images/mariah.webp",
   cappy: "/images/cappy-and-mariah.webp",
   aerial: "/images/aerial.webp",
+  trail: "/images/trail-ride.webp",
+  crossTies: "/images/cross-ties.webp",
+  jumping: "/images/jumping.webp",
+  barnJump: "/images/barn-jump.webp",
 };
 
 const FACTS = [
@@ -40,20 +42,20 @@ export default async function Home() {
     {
       title: "Safety First",
       body: "Strictly adhered-to barn rules and safety protocols keep every rider and horse safe.",
-      img: IMG.jump,
-      alt: "A rider and chestnut horse clearing a jump in front of the barn",
+      img: IMG.crossTies,
+      alt: "A chestnut and white pony standing calmly in cross-ties in the barn aisle",
     },
     {
       title: "Foundational Horsemanship",
       body: "Lessons in and out of the saddle, covering barn practices, handling, groundwork and riding, to build a complete equestrian.",
-      img: IMG.mariah,
-      alt: "Mariah standing with her chestnut horse",
+      img: IMG.jumping,
+      alt: "A rider and bay horse cantering over a low cross rail in the field",
     },
     {
       title: "Peaceful Atmosphere",
       body: "Seventeen acres of wooded land: warm, minimal and distraction-free, so you can connect with nature.",
-      img: IMG.paddock,
-      alt: "Two horses grazing in a quiet paddock",
+      img: IMG.trail,
+      alt: "Two young riders on horseback on a wooded trail",
     },
   ];
 
@@ -144,12 +146,21 @@ export default async function Home() {
       </section>
 
       {/* Tagline band */}
-      <section className="relative flex h-[300px] items-center justify-center overflow-hidden bg-forest sm:h-[360px]">
-        <div className="relative flex max-w-3xl flex-col items-center gap-3.5 px-6 text-center text-cream">
+      <section className="flex flex-col items-center gap-12 bg-forest px-6 py-20 lg:px-8 lg:py-28">
+        <div className="flex max-w-3xl flex-col items-center gap-3.5 text-center text-cream">
           <p className="font-script text-[44px] leading-none sm:text-[64px]">{tagline}</p>
           <p className="text-lg leading-relaxed text-oat sm:text-[19px]">
             Follow your passions, in and out of the barn.
           </p>
+        </div>
+        <div className="ee-zoom relative aspect-[1044/672] w-full max-w-5xl overflow-hidden rounded-[28px]">
+          <Image
+            src={IMG.barnJump}
+            alt="A rider and chestnut horse clearing a jump in front of the barn"
+            fill
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
     </div>
