@@ -1,7 +1,7 @@
 import { auth } from "../auth";
 import * as readline from "readline";
 
-// Bun automatically loads .env.local — no extra dotenv import needed.
+// Bun automatically loads .env.local, so no extra dotenv import is needed.
 
 function prompt(question: string, hidden = false): Promise<string> {
   return new Promise((resolve) => {
@@ -39,7 +39,7 @@ function prompt(question: string, hidden = false): Promise<string> {
 }
 
 async function main() {
-  console.log("\n  Evermore Equine — Admin User Setup\n");
+  console.log("\n  Evermore Equine: Admin User Setup\n");
 
   const email = await prompt("  Email:    ");
   const password = await prompt("  Password: ", true);
@@ -62,7 +62,7 @@ async function main() {
     });
 
     if (!result?.user) {
-      console.error("\n  ✗ Sign-up failed — no user returned.\n");
+      console.error("\n  ✗ Sign-up failed: no user returned.\n");
       process.exit(1);
     }
 
