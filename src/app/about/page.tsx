@@ -139,12 +139,12 @@ export default async function AboutPage() {
         <div className="grid w-full items-center gap-12 md:grid-cols-[minmax(0,1fr)_300px] md:gap-[72px]">
           <div className="flex flex-col gap-5 md:pl-6">
             <blockquote className="text-xl italic leading-[1.6] text-forest sm:text-[23px]">
-              <p><span className="-ml-[0.4em]">&ldquo;</span>And I couldn&apos;t be sure</p>
+              <p>And I couldn&apos;t be sure</p>
               <p>I had a feeling so peculiar</p>
               <p>This pain wouldn&apos;t be for</p>
-              <p className="font-script text-[40px] not-italic leading-[1.3] text-forest sm:text-[44px]">evermore.&rdquo;</p>
+              <p className="font-script text-[40px] not-italic leading-[1.3] text-forest sm:text-[44px]">evermore.</p>
             </blockquote>
-            <p className="text-[15px] font-semibold text-bark">&mdash; T.S.</p>
+            <p className="text-lg font-semibold text-bark">&mdash; T.S.</p>
           </div>
           <figure className="mx-auto flex w-full max-w-[300px] flex-col gap-3.5">
             <div className="relative w-full overflow-hidden rounded-[18px] shadow-[0_24px_40px_-16px_rgba(2,50,32,0.35)]" style={{ aspectRatio: "1119/1400" }}>
