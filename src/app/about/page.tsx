@@ -8,12 +8,10 @@ const IMG = {
     "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e1c444d2-b20c-4128-9d1e-7b509ac38088/Attachment-1-1769783405836.png?width=8000&height=8000&resize=contain",
   aerial:
     "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/2EC24B38-7C13-4462-BDC1-C46088D413E7-1766588996852.JPG?width=8000&height=8000&resize=contain",
-  bigRedSchool:
-    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Big-red-School-1766590252852.png?width=8000&height=8000&resize=contain",
+  marcusAndMariah: "/images/marcus-and-mariah.webp",
   cappy:
     "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/IMG_8834-1763680980805.jpg?width=8000&height=8000&resize=contain",
-  bigRedFirst:
-    "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/36686A12-4045-452F-827D-E15F878CB7D4-1765893758118.JPG?width=8000&height=8000&resize=contain",
+  bigRedHoughton: "/images/mariah.webp",
 };
 
 function Script({ children }: { children: React.ReactNode }) {
@@ -50,11 +48,11 @@ export default async function AboutPage() {
             </figcaption>
           </figure>
           <figure className="flex flex-col items-center gap-3">
-            <div className="ee-zoom relative w-[268px] max-w-full overflow-hidden rounded-3xl shadow-[0_24px_48px_-24px_rgba(2,50,32,0.4)]" style={{ aspectRatio: "268/318" }}>
-              <Image src={IMG.bigRedSchool} alt="Mariah with Big Red" fill sizes="268px" className="object-cover" />
+            <div className="ee-zoom relative w-[268px] max-w-full overflow-hidden rounded-3xl shadow-[0_24px_48px_-24px_rgba(2,50,32,0.4)]" style={{ aspectRatio: "434/592" }}>
+              <Image src={IMG.marcusAndMariah} alt="Marcus and Mariah riding bikes on a tree-lined trail" fill sizes="268px" className="object-cover" />
             </div>
             <figcaption>
-              <Caption>Mariah and Big Red at Houghton University circa 2019</Caption>
+              <Caption>Marcus and Mariah</Caption>
             </figcaption>
           </figure>
         </div>
@@ -146,11 +144,11 @@ export default async function AboutPage() {
                 <p>Evermore.&rdquo;</p>
               </blockquote>
           <figure className="flex shrink-0 flex-col items-center gap-2.5">
-            <div className="relative h-[170px] w-[260px] overflow-hidden rounded-[18px] shadow-xl">
-              <Image src={IMG.bigRedFirst} alt="Rider on horse at pasture" fill sizes="260px" className="object-cover" />
+            <div className="relative w-[260px] overflow-hidden rounded-[18px] shadow-xl" style={{ aspectRatio: "1119/1400" }}>
+              <Image src={IMG.bigRedHoughton} alt="Mariah standing with Big Red in a grassy field" fill sizes="260px" className="object-cover" />
             </div>
             <figcaption>
-              <Caption>Mariah on Big Red at her first competition circa 2012</Caption>
+              <Caption>Mariah and Big Red at Houghton University circa 2019</Caption>
             </figcaption>
           </figure>
         </div>
