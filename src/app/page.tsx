@@ -36,24 +36,44 @@ function Script({ children, className = "" }: { children: React.ReactNode; class
 
 export default async function Home() {
   const c = await getAllContent();
-  const tagline = c["home.hero.tagline"] || "where passion makes progress";
+  const tagline = c["home.hero.tagline"] ?? "where passion makes progress";
+  const body = "whitespace-pre-line text-lg leading-[1.7] text-bark sm:text-[19px]";
+  const welcomeParagraphs = [
+    c["home.welcome.paragraph1"] ??
+      "We are a boutique, small scale riding lesson facility dedicated to providing a personalized, high quality equestrian learning experience for riders ages 6 to 17, with a focus on beginner through intermediate riders eager to build a solid foundation.",
+    c["home.welcome.paragraph2"] ??
+      "Come to have fun, relax, and ride. We follow each rider’s pace and guide them toward their own goals.",
+    c["home.welcome.paragraph3"],
+  ];
+  const philosophy = [
+    {
+      key: "mission",
+      title: c["home.mission.title"] ?? "Our Mission",
+      paragraphs: [c["home.mission.paragraph1"], c["home.mission.paragraph2"]],
+    },
+    {
+      key: "basics",
+      title: c["home.basics.title"] ?? "From Basics to Beyond",
+      paragraphs: [c["home.basics.paragraph1"], c["home.basics.paragraph2"]],
+    },
+  ].filter((section) => c[`home.${section.key}.title`] || section.paragraphs.some(Boolean));
 
   const values = [
     {
-      title: "Safety First",
-      body: "Strictly adhered-to barn rules and safety protocols keep every rider and horse safe.",
+      title: c["home.values.safety.title"] ?? "Safety First",
+      body: c["home.values.safety.body"] ?? "Strictly adhered-to barn rules and safety protocols keep every rider and horse safe.",
       img: IMG.crossTies,
       alt: "A chestnut and white pony standing calmly in cross-ties in the barn aisle",
     },
     {
-      title: "Foundational Horsemanship",
-      body: "Lessons in and out of the saddle, covering barn practices, handling, groundwork and riding, to build a complete equestrian.",
+      title: c["home.values.horsemanship.title"] ?? "Foundational Horsemanship",
+      body: c["home.values.horsemanship.body"] ?? "Lessons in and out of the saddle, covering barn practices, handling, groundwork and riding, to build a complete equestrian.",
       img: IMG.jumping,
       alt: "A rider and bay horse cantering over a low cross rail in the field",
     },
     {
-      title: "Peaceful Atmosphere",
-      body: "Seventeen acres of wooded land: warm, minimal and distraction-free, so you can connect with nature.",
+      title: c["home.values.atmosphere.title"] ?? "Peaceful Atmosphere",
+      body: c["home.values.atmosphere.body"] ?? "Seventeen acres of wooded land: warm, minimal and distraction-free, so you can connect with nature.",
       img: IMG.trail,
       alt: "Two young riders on horseback on a wooded trail",
     },
@@ -103,17 +123,11 @@ export default async function Home() {
         <div className="flex flex-col gap-5">
           <Script>welcome to the barn</Script>
           <h2 className="text-4xl font-extrabold leading-[1.1] text-forest sm:text-[50px]">
-            A boutique lesson barn, built around the rider.
+            {c["home.welcome.title"] ?? "A boutique lesson barn, built around the rider."}
           </h2>
-          <p className="text-lg leading-[1.7] text-bark sm:text-[19px]">
-            We are a boutique, small scale riding lesson facility dedicated to providing a
-            personalized, high quality equestrian learning experience for riders ages 6 to 17,
-            with a focus on beginner through intermediate riders eager to build a solid foundation.
-          </p>
-          <p className="text-lg leading-[1.7] text-bark sm:text-[19px]">
-            Come to have fun, relax, and ride. We follow each rider&rsquo;s pace and guide them
-            toward their own goals.
-          </p>
+          {welcomeParagraphs.map((paragraph, i) =>
+            paragraph ? <p key={i} className={body}>{paragraph}</p> : null,
+          )}
         </div>
         <div className="ee-zoom relative h-[320px] overflow-hidden rounded-[28px] sm:h-[420px] lg:h-[520px]">
           <Image
@@ -126,6 +140,24 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Mission and Basics: keep the sections editable through the Home tab. */}
+      {philosophy.length > 0 && (
+        <section className="bg-sand px-6 py-20 lg:px-8 lg:py-28">
+          <div className={`mx-auto grid gap-12 lg:gap-20 ${philosophy.length > 1 ? "max-w-7xl lg:grid-cols-2" : "max-w-3xl"}`}>
+            {philosophy.map((section, i) => (
+              <div key={i} className="flex flex-col gap-5">
+                <h2 className="text-3xl font-extrabold leading-tight text-forest sm:text-[44px]">
+                  {section.title}
+                </h2>
+                {section.paragraphs.map((paragraph, n) =>
+                  paragraph ? <p key={n} className={body}>{paragraph}</p> : null,
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Meet the Horses */}
       <MeetTheHerd />
 
@@ -136,7 +168,7 @@ export default async function Home() {
             <div className="flex flex-col gap-2.5">
               <Script className="!text-wheat">why evermore</Script>
               <h2 className="text-3xl font-extrabold sm:text-[48px] sm:leading-tight">
-                Three things we never compromise on
+                {c["home.values.title"] ?? "Three things we never compromise on"}
               </h2>
             </div>
             <p className="text-[15px] text-sage">Tap a value to explore</p>
@@ -148,10 +180,16 @@ export default async function Home() {
       {/* Tagline band */}
       <section className="flex flex-col items-center gap-12 bg-forest px-6 py-20 lg:px-8 lg:py-28">
         <div className="flex max-w-3xl flex-col items-center gap-3.5 text-center text-cream">
-          <p className="font-script text-[44px] leading-none sm:text-[64px]">{tagline}</p>
-          <p className="text-lg leading-relaxed text-oat sm:text-[19px]">
-            Follow your passions, in and out of the barn.
+          <p className="font-script text-[44px] leading-none sm:text-[64px]">
+            {c["home.cta.tagline"] ?? tagline}
           </p>
+          {[c["home.cta.paragraph1"] ?? "Follow your passions, in and out of the barn.", c["home.cta.paragraph2"]].map((paragraph, i) =>
+            paragraph ? (
+              <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-oat sm:text-[19px]">
+                {paragraph}
+              </p>
+            ) : null,
+          )}
         </div>
         <div className="ee-zoom relative aspect-[1044/672] w-full max-w-xl overflow-hidden rounded-[28px]">
           <Image
