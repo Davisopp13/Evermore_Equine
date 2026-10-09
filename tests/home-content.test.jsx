@@ -62,4 +62,30 @@ describe("home page CMS content", () => {
     expect(html).toContain("New basics paragraph");
     expect(html).toContain("From Basics to Beyond");
   });
+
+  test("moves the editable tagline explanation beneath the photo and omits an empty closing band", async () => {
+    const explanation = 'At Evermore Equine, we created our tagline, "where passion makes progress", encouraging our riders to follow their passions, in and out of the barn.';
+    content = {
+      "home.mission.paragraph2": `Keep this mission paragraph.\n\n${explanation}`,
+      "home.cta.tagline": "",
+      "home.cta.paragraph1": "",
+      "home.cta.paragraph2": "",
+    };
+    const html = renderToStaticMarkup(await Home());
+    const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/g)].map((match) => match[0]);
+    const valuesIndex = sections.findIndex((section) => section.includes('id="values"'));
+    const photoSection = sections[valuesIndex + 1];
+    const missionSection = sections.find((section) => section.includes("Keep this mission paragraph."));
+
+    expect(photoSection).toContain("A rider and chestnut horse clearing a jump in front of the barn");
+    expect(photoSection.indexOf("At Evermore Equine")).toBeGreaterThan(photoSection.indexOf("<img"));
+    expect(missionSection).not.toContain("At Evermore Equine");
+    expect(html.match(/At Evermore Equine/g)).toHaveLength(1);
+    expect(html).not.toContain("A boutique riding lesson facility focused on safety");
+
+    content["home.mission.paragraph2"] = 'Keep this mission paragraph.\n\nAt Evermore Equine, we created our tagline, "updated tagline", to inspire every rider.';
+    const updated = renderToStaticMarkup(await Home());
+    expect(updated).toContain("updated tagline");
+    expect(updated).not.toContain("encouraging our riders to follow their passions");
+  });
 });

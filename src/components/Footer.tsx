@@ -20,6 +20,10 @@ export function Footer() {
               evermore equine
             </span>
           </div>
+          <p className="max-w-md text-[15px] leading-relaxed">
+            A boutique riding lesson facility focused on safety and foundational
+            horsemanship in a peaceful setting on 17 acres in Bear Creek, PA.
+          </p>
         </div>
 
         <div className="space-y-2.5 text-[15px]">

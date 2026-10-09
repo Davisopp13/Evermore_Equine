@@ -37,6 +37,15 @@ function Script({ children, className = "" }: { children: React.ReactNode; class
 export default async function Home() {
   const c = await getAllContent();
   const tagline = c["home.hero.tagline"] ?? "where passion makes progress";
+  const missionParagraphs = (c["home.mission.paragraph2"] ?? "").split(/\n\s*\n/);
+  const isTaglineParagraph = (paragraph: string) =>
+    paragraph.trim().startsWith("At Evermore Equine, we created our tagline,");
+  const photoParagraphs = missionParagraphs.filter(isTaglineParagraph);
+  const closingTagline = c["home.cta.tagline"] ?? tagline;
+  const closingParagraphs = [
+    c["home.cta.paragraph1"] ?? "Follow your passions, in and out of the barn.",
+    c["home.cta.paragraph2"],
+  ];
   const body = "whitespace-pre-line text-lg leading-[1.7] text-bark sm:text-[19px]";
   const welcomeParagraphs = [
     c["home.welcome.paragraph1"] ??
@@ -49,7 +58,10 @@ export default async function Home() {
     {
       key: "mission",
       title: c["home.mission.title"] ?? "Our Mission",
-      paragraphs: [c["home.mission.paragraph1"], c["home.mission.paragraph2"]],
+      paragraphs: [
+        c["home.mission.paragraph1"],
+        missionParagraphs.filter((paragraph) => !isTaglineParagraph(paragraph)).join("\n\n"),
+      ],
     },
     {
       key: "basics",
@@ -162,7 +174,7 @@ export default async function Home() {
       <MeetTheHerd />
 
       {/* Values */}
-      <section id="values" className="bg-forest px-6 py-20 text-cream lg:px-8 lg:py-28">
+      <section id="values" className="bg-forest px-6 pt-20 pb-10 text-cream lg:px-8 lg:pt-28 lg:pb-14">
         <div className="mx-auto flex max-w-7xl flex-col gap-12">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="flex flex-col gap-2.5">
@@ -178,23 +190,27 @@ export default async function Home() {
       </section>
 
       {/* Tagline band */}
-      <section className="flex flex-col items-center bg-forest px-6 py-20 lg:px-8 lg:py-28">
-        <div className="flex max-w-3xl flex-col items-center gap-3.5 text-center text-cream">
-          <p className="font-script text-[44px] leading-none sm:text-[64px]">
-            {c["home.cta.tagline"] ?? tagline}
-          </p>
-          {[c["home.cta.paragraph1"] ?? "Follow your passions, in and out of the barn.", c["home.cta.paragraph2"]].map((paragraph, i) =>
-            paragraph ? (
-              <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-oat sm:text-[19px]">
-                {paragraph}
+      {(closingTagline || closingParagraphs.some(Boolean)) && (
+        <section className="flex flex-col items-center bg-forest px-6 py-8 lg:px-8 lg:py-10">
+          <div className="flex max-w-3xl flex-col items-center gap-3.5 text-center text-cream">
+            {closingTagline && (
+              <p className="font-script text-[44px] leading-none sm:text-[64px]">
+                {closingTagline}
               </p>
-            ) : null,
-          )}
-        </div>
-      </section>
+            )}
+            {closingParagraphs.map((paragraph, i) =>
+              paragraph ? (
+                <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-oat sm:text-[19px]">
+                  {paragraph}
+                </p>
+              ) : null,
+            )}
+          </div>
+        </section>
+      )}
 
-      {/* Jumping photo and facility description */}
-      <section className="flex flex-col items-center bg-white px-6 py-20 lg:px-8 lg:py-28">
+      {/* Jumping photo and tagline explanation */}
+      <section className="flex flex-col items-center bg-white px-6 py-12 lg:px-8 lg:py-16">
         <div className="flex w-full max-w-xl flex-col gap-5">
           <div className="ee-zoom relative aspect-[1044/672] w-full overflow-hidden rounded-[28px]">
             <Image
@@ -205,10 +221,11 @@ export default async function Home() {
               className="object-cover"
             />
           </div>
-          <p className="text-center text-[15px] leading-relaxed text-bark">
-            A boutique riding lesson facility focused on safety and foundational
-            horsemanship in a peaceful setting on 17 acres in Bear Creek, PA.
-          </p>
+          {photoParagraphs.map((paragraph, i) => (
+            <p key={i} className="whitespace-pre-line text-center text-[15px] leading-relaxed text-bark">
+              {paragraph.trim()}
+            </p>
+          ))}
         </div>
       </section>
     </div>
