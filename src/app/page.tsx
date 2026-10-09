@@ -178,7 +178,7 @@ export default async function Home() {
       </section>
 
       {/* Tagline band */}
-      <section className="flex flex-col items-center gap-12 bg-forest px-6 py-20 lg:px-8 lg:py-28">
+      <section className="flex flex-col items-center bg-forest px-6 py-20 lg:px-8 lg:py-28">
         <div className="flex max-w-3xl flex-col items-center gap-3.5 text-center text-cream">
           <p className="font-script text-[44px] leading-none sm:text-[64px]">
             {c["home.cta.tagline"] ?? tagline}
@@ -191,14 +191,24 @@ export default async function Home() {
             ) : null,
           )}
         </div>
-        <div className="ee-zoom relative aspect-[1044/672] w-full max-w-xl overflow-hidden rounded-[28px]">
-          <Image
-            src={IMG.barnJump}
-            alt="A rider and chestnut horse clearing a jump in front of the barn"
-            fill
-            sizes="(min-width: 640px) 576px, 100vw"
-            className="object-cover"
-          />
+      </section>
+
+      {/* Jumping photo and facility description */}
+      <section className="flex flex-col items-center bg-white px-6 py-20 lg:px-8 lg:py-28">
+        <div className="flex w-full max-w-xl flex-col gap-5">
+          <div className="ee-zoom relative aspect-[1044/672] w-full overflow-hidden rounded-[28px]">
+            <Image
+              src={IMG.barnJump}
+              alt="A rider and chestnut horse clearing a jump in front of the barn"
+              fill
+              sizes="(min-width: 640px) 576px, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <p className="text-center text-[15px] leading-relaxed text-bark">
+            A boutique riding lesson facility focused on safety and foundational
+            horsemanship in a peaceful setting on 17 acres in Bear Creek, PA.
+          </p>
         </div>
       </section>
     </div>
