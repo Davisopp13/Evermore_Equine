@@ -11,6 +11,19 @@ export const siteContent = sqliteTable("site_content", {
     .default(sql`(unixepoch())`),
 });
 
+// The announcement is independent of the site's editable page copy.
+export const popupSettings = sqliteTable("popup_settings", {
+  id: integer("id").primaryKey(),
+  enabled: integer("enabled", { mode: "boolean" }).notNull().default(false),
+  headline: text("headline").notNull().default(""),
+  message: text("message").notNull().default(""),
+  imageUrl: text("image_url").notNull().default(""),
+  buttonText: text("button_text").notNull().default(""),
+  buttonUrl: text("button_url").notNull().default(""),
+  expiresAt: text("expires_at"),
+  revision: text("revision").notNull(),
+});
+
 // ── Better Auth tables ──────────────────────────────────────────────────────
 export const user = sqliteTable("user", {
   id: text("id").primaryKey(),
