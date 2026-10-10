@@ -43,7 +43,7 @@ export function PopupEditor({ initialSettings }: { initialSettings: PopupSetting
     const expiresAt = endDate?.toISOString() ?? null;
     startTransition(async () => {
       try {
-        const saved = await savePopupSettings({
+        const result = await savePopupSettings({
           enabled: draft.enabled,
           headline: draft.headline,
           message: draft.message,
@@ -52,6 +52,12 @@ export function PopupEditor({ initialSettings }: { initialSettings: PopupSetting
           buttonUrl: draft.buttonUrl,
           expiresAt,
         });
+        if (!result.ok) {
+          setError(result.error);
+          toast.error(result.error);
+          return;
+        }
+        const saved = result.settings;
         setDraft(saved);
         setEndLocal(localDateTime(saved.expiresAt));
         toast.success("Popup settings saved.");

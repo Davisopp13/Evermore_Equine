@@ -28,6 +28,12 @@ const announcement = {
   expiresAt: null,
 };
 
+async function saveValid(input) {
+  const result = await savePopupSettings(input);
+  expect(result.ok).toBe(true);
+  return result.settings;
+}
+
 beforeAll(async () => {
   await client.execute(`CREATE TABLE popup_settings (
     id integer PRIMARY KEY, enabled integer NOT NULL DEFAULT 0,
@@ -45,17 +51,17 @@ describe("announcement settings", () => {
   });
 
   test("persists a revision and reads the saved values", async () => {
-    const first = await savePopupSettings(announcement);
+    const first = await saveValid(announcement);
     expect(first.revision).toBeTruthy();
     expect(await readPopupSettings()).toEqual(first);
     expect((await (await GET()).json()).headline).toBe("Barn opening");
   });
 
   test("toggle off, clear optional fields, and enable again", async () => {
-    const off = await savePopupSettings({ ...announcement, enabled: false, imageUrl: "", buttonUrl: "", expiresAt: null });
+    const off = await saveValid({ ...announcement, enabled: false, imageUrl: "", buttonUrl: "", expiresAt: null });
     expect(await (await GET()).json()).toBeNull();
     expect((await readPopupSettings()).imageUrl).toBe("");
-    const on = await savePopupSettings({ ...off, enabled: true });
+    const on = await saveValid({ ...off, enabled: true });
     expect(on.revision).not.toBe(off.revision);
     expect(on.buttonUrl).toBe("");
     expect((await (await GET()).json()).enabled).toBe(true);
@@ -63,12 +69,12 @@ describe("announcement settings", () => {
 
   test("expiration is exclusive at the deadline and can be cleared", async () => {
     const deadline = "2030-01-01T00:00:00.000Z";
-    const expiring = await savePopupSettings({ ...announcement, expiresAt: deadline });
+    const expiring = await saveValid({ ...announcement, expiresAt: deadline });
     expect(isActivePopup(expiring, Date.parse(deadline) - 1)).toBe(true);
     expect(isActivePopup(expiring, Date.parse(deadline))).toBe(false);
-    await savePopupSettings({ ...announcement, expiresAt: "2000-01-01T00:00:00.000Z" });
+    await saveValid({ ...announcement, expiresAt: "2000-01-01T00:00:00.000Z" });
     expect(await (await GET()).json()).toBeNull();
-    await savePopupSettings({ ...announcement, expiresAt: null });
+    await saveValid({ ...announcement, expiresAt: null });
     expect((await (await GET()).json()).expiresAt).toBeNull();
   });
 
@@ -80,7 +86,14 @@ describe("announcement settings", () => {
     expect(() => validatePopupSettings({ ...announcement, expiresAt: "2026-02-30T00:00:00.000Z" })).toThrow();
     expect(() => validatePopupSettings({ ...announcement, headline: "" })).toThrow();
     const before = await readPopupSettings();
-    await expect(savePopupSettings({ ...announcement, buttonUrl: "javascript:alert(1)" })).rejects.toThrow();
+    expect(await savePopupSettings({ ...announcement, buttonUrl: "javascript:alert(1)" })).toEqual({
+      ok: false,
+      error: "Button link must be a site path or HTTP/HTTPS link.",
+    });
+    expect(await savePopupSettings({ ...announcement, headline: "" })).toEqual({
+      ok: false,
+      error: "Headline, message, and button text are required when the popup is on.",
+    });
     expect(await readPopupSettings()).toEqual(before);
   });
 

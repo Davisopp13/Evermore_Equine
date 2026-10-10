@@ -15,15 +15,22 @@ export async function getPopupSettingsForAdmin(): Promise<PopupSettings> {
   return readPopupSettings();
 }
 
-export async function savePopupSettings(input: Omit<PopupSettings, "revision">): Promise<PopupSettings> {
+export async function savePopupSettings(
+  input: Omit<PopupSettings, "revision">
+): Promise<{ ok: true; settings: PopupSettings } | { ok: false; error: string }> {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!isAdminEmail(session?.user.email)) throw new Error("Unauthorized");
-  const settings = validatePopupSettings(input);
+  let settings: Omit<PopupSettings, "revision">;
+  try {
+    settings = validatePopupSettings(input);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Invalid popup settings." };
+  }
   const revision = crypto.randomUUID();
   await db.insert(popupSettings).values({ id: 1, ...settings, revision }).onConflictDoUpdate({
     target: popupSettings.id,
     set: { ...settings, revision },
   });
   revalidatePath("/", "layout");
-  return { ...settings, revision };
+  return { ok: true, settings: { ...settings, revision } };
 }
