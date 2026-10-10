@@ -6,6 +6,7 @@ import Script from "next/script";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { OpeningAnnouncement } from "@/components/OpeningAnnouncement";
 
 export const metadata: Metadata = {
   title: "evermore equine llc | Boutique Riding Lesson Facility",
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Footer />
         <VisualEditsMessenger />
         <Toaster />
+        <OpeningAnnouncement />
       </body>
     </html>
   );

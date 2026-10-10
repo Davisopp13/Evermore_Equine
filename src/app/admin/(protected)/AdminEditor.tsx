@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { LogOut, Save, Plus, Trash2 } from "lucide-react";
+import { PopupEditor } from "./PopupEditor";
+import type { PopupSettings } from "@/lib/popup";
 
 // ── Field components ───────────────────────────────────────────────────────
 function Field({
@@ -142,8 +144,10 @@ function ChecklistEditor({
 // ── Main editor ────────────────────────────────────────────────────────────
 export function AdminEditor({
   initialContent,
+  initialPopup,
 }: {
   initialContent: Record<string, string>;
+  initialPopup: PopupSettings;
 }) {
   const router = useRouter();
   const [draft, setDraft] = useState<Record<string, string>>(initialContent);
@@ -309,12 +313,15 @@ export function AdminEditor({
 
       <div className="container max-w-4xl mx-auto px-4 py-8">
         <Tabs defaultValue="home">
-          <TabsList className="mb-6">
+          <TabsList className="mb-6 flex h-auto flex-wrap justify-start">
             <TabsTrigger value="home">Home</TabsTrigger>
             <TabsTrigger value="about">About</TabsTrigger>
             <TabsTrigger value="services">Services</TabsTrigger>
             <TabsTrigger value="contact">Contact</TabsTrigger>
+            <TabsTrigger value="popup">Popup</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="popup"><PopupEditor initialSettings={initialPopup} /></TabsContent>
 
           {/* ── HOME ─────────────────────────────────────────────────── */}
           <TabsContent value="home" className="space-y-6">

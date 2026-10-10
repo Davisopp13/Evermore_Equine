@@ -5,6 +5,7 @@ import { siteContent } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import { isAdminEmail } from "@/lib/admin-access";
 
 export async function getContent(key: string): Promise<string> {
   try {
@@ -30,7 +31,7 @@ export async function getAllContent(): Promise<Record<string, string>> {
 
 export async function updateContent(key: string, value: string): Promise<void> {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) throw new Error("Unauthorized");
+  if (!isAdminEmail(session?.user.email)) throw new Error("Unauthorized");
 
   await db
     .insert(siteContent)
@@ -45,7 +46,7 @@ export async function updateManyContent(
   entries: Record<string, string>
 ): Promise<void> {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) throw new Error("Unauthorized");
+  if (!isAdminEmail(session?.user.email)) throw new Error("Unauthorized");
 
   for (const [key, value] of Object.entries(entries)) {
     await db

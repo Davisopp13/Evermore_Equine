@@ -1,4 +1,5 @@
-import { auth } from "../auth";
+import { createAuth } from "../auth";
+import { isAdminEmail } from "../admin-access";
 import * as readline from "readline";
 
 // Bun automatically loads .env.local — no extra dotenv import needed.
@@ -56,8 +57,13 @@ async function main() {
     process.exit(1);
   }
 
+  if (!isAdminEmail(email)) {
+    console.error("\n  ✗ Add this email to ADMIN_EMAILS before creating the admin user.\n");
+    process.exit(1);
+  }
+
   try {
-    const result = await auth.api.signUpEmail({
+    const result = await createAuth(true).api.signUpEmail({
       body: { email, password, name },
     });
 
