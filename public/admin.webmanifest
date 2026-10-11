@@ -1,0 +1,15 @@
+{
+  "id": "/admin",
+  "name": "Evermore Equine Admin",
+  "short_name": "Evermore Admin",
+  "description": "Manage Evermore Equine site content.",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "background_color": "#023220",
+  "theme_color": "#023220",
+  "icons": [
+    { "src": "/icons/admin-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/admin-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
