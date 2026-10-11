@@ -7,12 +7,20 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { OpeningAnnouncement } from "@/components/OpeningAnnouncement";
+import { PwaServiceWorker } from "@/components/PwaServiceWorker";
 
 export const metadata: Metadata = {
   title: "evermore equine llc | Boutique Riding Lesson Facility",
   description: "Foundational horsemanship, safety, and peace at Bear Creek.",
+  manifest: "/site.webmanifest",
+  applicationName: "Evermore Equine",
+  appleWebApp: { capable: true, title: "Evermore Equine", statusBarStyle: "default" },
   icons: {
-    icon: "/evermore_equine_logo.jpg",
+    icon: [
+      { url: "/icons/site-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/site-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/icons/site-apple-touch.png",
   },
 };
 
@@ -58,6 +66,7 @@ export default function RootLayout({
         <VisualEditsMessenger />
         <Toaster />
         <OpeningAnnouncement />
+        <PwaServiceWorker />
       </body>
     </html>
   );

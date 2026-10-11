@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "Evermore Equine",
+  "short_name": "Evermore",
+  "description": "Riding lessons and horsemanship at Evermore Equine.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbf8f1",
+  "theme_color": "#023220",
+  "icons": [
+    { "src": "/icons/site-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/site-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
