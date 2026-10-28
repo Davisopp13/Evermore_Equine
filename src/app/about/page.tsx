@@ -144,7 +144,7 @@ export default async function AboutPage() {
               <p>This pain wouldn&apos;t be for</p>
               <p className="font-script text-[40px] not-italic leading-[1.3] text-forest sm:text-[44px]">evermore.</p>
             </blockquote>
-            <p className="text-lg font-semibold text-bark">&mdash; T.S.</p>
+            <p className="text-lg font-semibold text-bark">T.S.</p>
           </div>
           <figure className="mx-auto flex w-full max-w-[300px] flex-col gap-3.5">
             <div className="relative w-full overflow-hidden rounded-[18px] shadow-[0_24px_40px_-16px_rgba(2,50,32,0.35)]" style={{ aspectRatio: "1119/1400" }}>
