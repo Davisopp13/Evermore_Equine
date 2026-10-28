@@ -177,7 +177,7 @@ export function AdminEditor({
         await updateManyContent(entries);
         toast.success("Changes saved!");
       } catch {
-        toast.error("Save failed — please try again.");
+        toast.error("Save failed. Please try again.");
       }
     });
   }
@@ -190,7 +190,7 @@ export function AdminEditor({
         });
         toast.success("Lesson information saved!");
       } catch {
-        toast.error("Save failed — please try again.");
+        toast.error("Save failed. Please try again.");
       }
     });
   }
@@ -205,7 +205,7 @@ export function AdminEditor({
         });
         toast.success("Pricing & payment saved!");
       } catch {
-        toast.error("Save failed — please try again.");
+        toast.error("Save failed. Please try again.");
       }
     });
   }
@@ -298,7 +298,7 @@ export function AdminEditor({
           className="text-xl font-semibold text-primary"
           style={{ fontFamily: "var(--font-nunito)" }}
         >
-          evermore equine — Content Editor
+          evermore equine | Content Editor
         </h1>
         <Button
           variant="ghost"

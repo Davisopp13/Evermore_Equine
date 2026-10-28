@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "fs";
 import { resolve } from "path";
 
 // Drizzle Kit evaluates this config in its own subprocess and does not
-// automatically load .env.local — load it explicitly here.
+// automatically load .env.local, so load it explicitly here.
 const envPath = resolve(process.cwd(), ".env.local");
 if (existsSync(envPath)) {
   for (const line of readFileSync(envPath, "utf8").split("\n")) {
